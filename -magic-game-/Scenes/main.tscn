@@ -1,3 +1,38 @@
-[gd_scene format=3 uid="uid://c24vjdbpjmeg5"]
+[gd_scene load_steps=7 format=3 uid="uid://c24vjdbpjmeg5"]
+
+[ext_resource type="PackedScene" uid="uid://dbqhmpl3vbu5g" path="res://Prefabs/player.tscn" id="1_4lcrh"]
+[ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_4djil"]
+[ext_resource type="Script" path="res://Scenes/Target.cs" id="2_5scar"]
+[ext_resource type="PackedScene" uid="uid://ctju373vaiqiu" path="res://Prefabs/Spells/Airblast/airblast_item.tscn" id="2_76yyu"]
+[ext_resource type="PackedScene" uid="uid://dvvhhjisdf0wr" path="res://Prefabs/Spells/Fireball/fireball_item.tscn" id="3_dy5di"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq7ra"]
+size = Vector2(46, 92)
 
 [node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_4lcrh")]
+position = Vector2(619, 311)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
+enabled = false
+process_callback = 0
+position_smoothing_enabled = true
+
+[node name="target" type="StaticBody2D" parent="."]
+position = Vector2(1149, 241)
+script = ExtResource("2_5scar")
+
+[node name="Sprite2D" type="Sprite2D" parent="target"]
+scale = Vector2(0.367188, 0.726563)
+texture = ExtResource("2_4djil")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="target"]
+shape = SubResource("RectangleShape2D_aq7ra")
+
+[node name="Fireball" parent="." instance=ExtResource("3_dy5di")]
+position = Vector2(470, 334)
+
+[node name="AirBlast" parent="." instance=ExtResource("2_76yyu")]
+position = Vector2(749, 367)
