@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctju373vaiqiu"]
+
+[ext_resource type="Texture2D" uid="uid://cvh023gfmdwvp" path="res://Assets/Spells/AirBlast/air-blast.png" id="1_ocyxf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_twgsb"]
+size = Vector2(23, 32)
+
+[node name="AirBlast" type="Area2D" groups=["SpellPickups"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ocyxf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_twgsb")
