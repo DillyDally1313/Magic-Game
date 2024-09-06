@@ -91,14 +91,14 @@ public partial class Player : CharacterBody2D {
 				float distance = Position.DistanceTo(target.Position);
 				float rotation = direction.Angle();
 
-				for (int i = 0; i < distance / 32; i++) {
+				for (int i = 0; i < Mathf.Min(distance / 32, 10); i++) {
 					Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
 					lightning.Position = start + new Vector2(32 * i * direction.X, 32 * i * direction.Y);
 					lightning.target = target;
 					lightning.rotation = rotation;
 					GetNode("/root/Main").AddChild(lightning);
 
-					await ToSignal(GetTree().CreateTimer(.02), "timeout");
+					//await ToSignal(GetTree().CreateTimer(.002), "timeout");
 				}
 				break;
 			}
