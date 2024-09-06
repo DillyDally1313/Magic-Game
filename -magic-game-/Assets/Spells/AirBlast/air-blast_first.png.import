@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy584slusoc2h"
-path="res://.godot/imported/air-blast_first.png-23c8a71bdca6308d1c4720d68f619626.ctex"
+path="res://.godot/imported/air-blast_first.png-6340ff0583001b473a3f74740a36c886.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spells/AirBlast/air-blast_first.png"
-dest_files=["res://.godot/imported/air-blast_first.png-23c8a71bdca6308d1c4720d68f619626.ctex"]
+source_file="res://Assets/Spells/Airblast/air-blast_first.png"
+dest_files=["res://.godot/imported/air-blast_first.png-6340ff0583001b473a3f74740a36c886.ctex"]
 
 [params]
 

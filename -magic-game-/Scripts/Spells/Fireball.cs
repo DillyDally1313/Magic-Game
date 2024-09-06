@@ -1,14 +1,12 @@
 using Godot;
 
-public partial class Airblast : RigidBody2D {
+public partial class Fireball : RigidBody2D {
 	float speed = 600;
 
-	Node2D target;
+	public Node2D target;
 
 	// runs once when object is created
 	public override void _Ready() {
-		target = GetNode<Node2D>("/root/Main/target");
-
 		// rotate towards the target
 		Rotation = (target.Position - Position).Normalized().Angle();
 	}

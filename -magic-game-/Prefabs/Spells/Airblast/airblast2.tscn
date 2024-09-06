@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0rsh4qo4lvda"]
 
-[ext_resource type="Script" path="res://Scripts/Airblast.cs" id="1_soqem"]
-[ext_resource type="Texture2D" uid="uid://bxq24tbwglrox" path="res://Assets/Spells/AirBlast/air-blast_last.png" id="2_urq4p"]
+[ext_resource type="Script" path="res://Scripts/Spells/Airblast.cs" id="1_soqem"]
+[ext_resource type="Texture2D" uid="uid://bxq24tbwglrox" path="res://Assets/Spells/Airblast/air-blast_last.png" id="2_urq4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jte4w"]
 size = Vector2(6, 14)

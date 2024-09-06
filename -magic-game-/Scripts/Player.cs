@@ -3,10 +3,11 @@ using Godot;
 
 public partial class Player : CharacterBody2D {
 	float moveSpeed = 300;
-	string currentSpell = null;
+	public int currentSpell;
 
 	// all available spells
 	List<string> availableSpells = new();
+	public List<string> useableSpells = new();
 
 	// main physics loop, runs every frame
 	public override void _PhysicsProcess(double delta) {
@@ -21,9 +22,14 @@ public partial class Player : CharacterBody2D {
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, moveSpeed);
 		}
 
+		// switch spells
+		if (Input.IsActionJustPressed("spell_slot1") && useableSpells.Count >= 1) { currentSpell = 0; }
+		if (Input.IsActionJustPressed("spell_slot2") && useableSpells.Count >= 2) { currentSpell = 1; }
+		if (Input.IsActionJustPressed("spell_slot3") && useableSpells.Count >= 3) { currentSpell = 2; }
+
 		// use the spell
 		if (Input.IsActionJustPressed("use_spell")) {
-			if (availableSpells.Count > 0){
+			if (useableSpells.Count > 0){
 				UseSpell();
 			}
 		}
@@ -36,35 +42,63 @@ public partial class Player : CharacterBody2D {
 	// when player collides with spell, call PickUpSpell
 	public void _OnArea2DAreaEntered(Area2D area) {
 		if (area.IsInGroup("SpellPickups")) {
-			PickUpSpell(area.Name);
+			AddSpell(area.Name.ToString().ToLower());
 			area.QueueFree();
 		}
 	}
 
 	// add spell to available spells
-	public void PickUpSpell(string spellName) {
-		if (!availableSpells.Contains(spellName.ToLower())) {
-			availableSpells.Add(spellName.ToLower());
-			currentSpell = spellName.ToLower();
+	public void AddSpell(string spellName) {
+		// add to total available spells
+		if (!availableSpells.Contains(spellName)) {
+			availableSpells.Add(spellName);
+		}
+
+		// add to useable spell slots if there is room
+		if (useableSpells.Count < 3) {
+			useableSpells.Add(spellName);
 		}
 	}
 
 	// instantiates spell
 	public async void UseSpell() {
-		switch (currentSpell) {
+		Node2D target = GetNode<Node2D>("/root/Main/target");
+
+		switch (useableSpells[currentSpell]) {
 			case "fireball": {
 				Fireball fireball = GD.Load<PackedScene>("res://Prefabs/Spells/Fireball/fireball.tscn").Instantiate<Fireball>();
 				fireball.Position = Position;
+				fireball.target = target;
 				GetNode("/root/Main").AddChild(fireball);
 				break;
 			}
 			case "airblast": {
+				Vector2 start = Position;
+
 				for (int i = 0; i < 3; i++) {
 					Airblast airblast = GD.Load<PackedScene>("res://Prefabs/Spells/Airblast/airblast" + i + ".tscn").Instantiate<Airblast>();
-					airblast.Position = Position;
+					airblast.Position = start;
+					airblast.target = target;
 					GetNode("/root/Main").AddChild(airblast);
 
-					await ToSignal(GetTree().CreateTimer(.05), "timeout");
+					await ToSignal(GetTree().CreateTimer(.03), "timeout");
+				}
+				break;
+			}
+			case "lightning": {
+				Vector2 start = Position;
+				Vector2 direction = (target.Position - Position).Normalized();
+				float distance = Position.DistanceTo(target.Position);
+				float rotation = direction.Angle();
+
+				for (int i = 0; i < distance / 32; i++) {
+					Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
+					lightning.Position = start + new Vector2(32 * i * direction.X, 32 * i * direction.Y);
+					lightning.target = target;
+					lightning.rotation = rotation;
+					GetNode("/root/Main").AddChild(lightning);
+
+					await ToSignal(GetTree().CreateTimer(.02), "timeout");
 				}
 				break;
 			}

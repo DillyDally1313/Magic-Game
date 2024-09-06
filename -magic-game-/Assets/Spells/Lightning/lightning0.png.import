@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvh023gfmdwvp"
-path="res://.godot/imported/air-blast.png-d463f75e05c8d694d4d6af024f4310bb.ctex"
+uid="uid://bo82kbkmaqsm1"
+path="res://.godot/imported/lightning0.png-3b6fd58c5e405035c8258404acb3c1ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spells/AirBlast/air-blast.png"
-dest_files=["res://.godot/imported/air-blast.png-d463f75e05c8d694d4d6af024f4310bb.ctex"]
+source_file="res://Assets/Spells/Lightning/lightning0.png"
+dest_files=["res://.godot/imported/lightning0.png-3b6fd58c5e405035c8258404acb3c1ec.ctex"]
 
 [params]
 

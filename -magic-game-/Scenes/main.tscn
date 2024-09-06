@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c24vjdbpjmeg5"]
+[gd_scene load_steps=9 format=3 uid="uid://c24vjdbpjmeg5"]
 
 [ext_resource type="PackedScene" uid="uid://dbqhmpl3vbu5g" path="res://Prefabs/player.tscn" id="1_4lcrh"]
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_4djil"]
-[ext_resource type="Script" path="res://Scenes/Target.cs" id="2_5scar"]
+[ext_resource type="Script" path="res://Scripts/Target.cs" id="2_5scar"]
 [ext_resource type="PackedScene" uid="uid://ctju373vaiqiu" path="res://Prefabs/Spells/Airblast/airblast_item.tscn" id="2_76yyu"]
 [ext_resource type="PackedScene" uid="uid://dvvhhjisdf0wr" path="res://Prefabs/Spells/Fireball/fireball_item.tscn" id="3_dy5di"]
+[ext_resource type="PackedScene" uid="uid://dsxnfiqx3r3mt" path="res://Scenes/ui.tscn" id="6_had75"]
+[ext_resource type="PackedScene" uid="uid://b8ijd0w07tbpp" path="res://Prefabs/Spells/Lightning/lightning_item.tscn" id="7_gkf2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq7ra"]
 size = Vector2(46, 92)
@@ -12,7 +14,7 @@ size = Vector2(46, 92)
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_4lcrh")]
-position = Vector2(619, 311)
+position = Vector2(630, 414)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 visible = false
@@ -21,7 +23,7 @@ process_callback = 0
 position_smoothing_enabled = true
 
 [node name="target" type="StaticBody2D" parent="."]
-position = Vector2(1149, 241)
+position = Vector2(1152, 138)
 script = ExtResource("2_5scar")
 
 [node name="Sprite2D" type="Sprite2D" parent="target"]
@@ -32,7 +34,15 @@ texture = ExtResource("2_4djil")
 shape = SubResource("RectangleShape2D_aq7ra")
 
 [node name="Fireball" parent="." instance=ExtResource("3_dy5di")]
-position = Vector2(470, 334)
+position = Vector2(478, 473)
 
 [node name="AirBlast" parent="." instance=ExtResource("2_76yyu")]
-position = Vector2(749, 367)
+position = Vector2(631, 536)
+
+[node name="Lightning" parent="." instance=ExtResource("7_gkf2j")]
+position = Vector2(788, 476)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Spells" parent="UI" instance=ExtResource("6_had75")]
+metadata/_edit_lock_ = true

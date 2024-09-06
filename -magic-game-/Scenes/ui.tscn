@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsxnfiqx3r3mt"]
+
+[ext_resource type="Script" path="res://Scripts/UI/EquipedSpells.cs" id="1_nvbu0"]
+[ext_resource type="Texture2D" uid="uid://b3jl58hoy8p0q" path="res://Assets/Spells/Fireball/fireball_icon.png" id="2_2wwkg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6qxb"]
+bg_color = Color(0.23394, 0.0789909, 0.469451, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cfp6"]
+bg_color = Color(0.14338, 0.488004, 0.492904, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5mws"]
+bg_color = Color(0.14338, 0.488004, 0.492904, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spells" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -126.0
+offset_right = 52.0
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_nvbu0")
+
+[node name="Background" type="ColorRect" parent="Spells"]
+layout_mode = 2
+color = Color(6.61798e-08, 0.15719, 0.164271, 1)
+
+[node name="SpellSlots" type="VBoxContainer" parent="Spells"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Slot1" type="Panel" parent="Spells/SpellSlots"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_f6qxb")
+
+[node name="Slot2" type="Panel" parent="Spells/SpellSlots"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_6cfp6")
+
+[node name="Slot3" type="Panel" parent="Spells/SpellSlots"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_c5mws")
+
+[node name="EquipedSpells" type="VBoxContainer" parent="Spells"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Margin1" type="MarginContainer" parent="Spells/EquipedSpells"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Spell1" type="TextureRect" parent="Spells/EquipedSpells/Margin1"]
+layout_mode = 2
+texture = ExtResource("2_2wwkg")
+stretch_mode = 2
+
+[node name="Margin2" type="MarginContainer" parent="Spells/EquipedSpells"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Spell2" type="TextureRect" parent="Spells/EquipedSpells/Margin2"]
+layout_mode = 2
+texture = ExtResource("2_2wwkg")
+stretch_mode = 2
+
+[node name="Margin3" type="MarginContainer" parent="Spells/EquipedSpells"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Spell3" type="TextureRect" parent="Spells/EquipedSpells/Margin3"]
+layout_mode = 2
+texture = ExtResource("2_2wwkg")
+stretch_mode = 2
