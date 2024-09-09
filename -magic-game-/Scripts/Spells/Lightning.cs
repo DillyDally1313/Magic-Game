@@ -7,7 +7,7 @@ public partial class Lightning : Node2D {
 	float segmentLength = 80;
 	float segmentWidth = 1.5f;
 	int spread = 30;
-	float timeAlive = 0.3f;
+	float timeAlive = 0.1f;
 
 	public Node2D target;
 

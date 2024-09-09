@@ -62,52 +62,44 @@ public partial class Player : CharacterBody2D {
 
 	// instantiates spell
 	public async void UseSpell() {
-		Node2D target = GetNode<Node2D>("/root/Main/target");
+		float spawnDistance = 50;
+
+		Vector2 enemyPos = GetNode<Node2D>("/root/Main/target").Position;
 
 		switch (useableSpells[currentSpell]) {
 			case "fireball": {
 				Fireball fireball = GD.Load<PackedScene>("res://Prefabs/Spells/Fireball/fireball.tscn").Instantiate<Fireball>();
-				fireball.Position = Position;
-				fireball.target = target;
+				fireball.Position = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
+				fireball.target = enemyPos;
 				GetNode("/root/Main").AddChild(fireball);
 				break;
 			}
 			case "airblast": {
-				Vector2 start = Position;
+				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
 
 				for (int i = 0; i < 3; i++) {
 					Airblast airblast = GD.Load<PackedScene>("res://Prefabs/Spells/Airblast/airblast" + i + ".tscn").Instantiate<Airblast>();
 					airblast.Position = start;
-					airblast.target = target;
+					airblast.target = enemyPos;
 					GetNode("/root/Main").AddChild(airblast);
 
-					await ToSignal(GetTree().CreateTimer(.03), "timeout");
+					if (i == 0) {
+						airblast.GetNode<CpuParticles2D>("ParticlesTop").Emitting = true;
+						airblast.GetNode<CpuParticles2D>("ParticlesBottom").Emitting = true;
+					}
+
+					await ToSignal(GetTree().CreateTimer(.05), "timeout");
 				}
 				break;
 			}
 			case "lightning": {
-				/*
-				Vector2 start = Position;
-				Vector2 direction = (target.Position - Position).Normalized();
-				float distance = Position.DistanceTo(target.Position);
-				float rotation = direction.Angle();
-
-				for (int i = 0; i < Mathf.Min(distance / 32, 10); i++) {
-					Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
-					lightning.Position = start + new Vector2(32 * i * direction.X, 32 * i * direction.Y);
-					lightning.target = target;
-					lightning.rotation = rotation;
-					GetNode("/root/Main").AddChild(lightning);
-
-					//await ToSignal(GetTree().CreateTimer(.002), "timeout");
-				}
-				*/
+				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
 
 				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
 				GetNode("/root/Main").AddChild(lightning);
 
-				lightning.Initialize(4);
-				lightning.DrawLightning(Position, target.Position);
+				lightning.Initialize(6);
+				lightning.DrawLightning(start, enemyPos);
 
 				break;
 			}

@@ -3,5 +3,5 @@
 [ext_resource type="Script" path="res://Scripts/Spells/Lightning.cs" id="1_h1dys"]
 
 [node name="Lightning" type="Node2D"]
-modulate = Color(5, 5, 1, 1)
+modulate = Color(5, 1, 5, 1)
 script = ExtResource("1_h1dys")

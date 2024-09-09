@@ -44,22 +44,16 @@ texture = ExtResource("2_4djil")
 shape = SubResource("RectangleShape2D_aq7ra")
 
 [node name="Fireball" parent="." instance=ExtResource("3_dy5di")]
-modulate = Color(2, 2, 2, 1)
 position = Vector2(478, 473)
 
 [node name="AirBlast" parent="." instance=ExtResource("2_76yyu")]
-modulate = Color(2, 2, 2, 1)
 position = Vector2(631, 536)
 
 [node name="Lightning" parent="." instance=ExtResource("7_gkf2j")]
-modulate = Color(2, 2, 2, 1)
+modulate = Color(5, 1, 1, 1)
 position = Vector2(788, 476)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="Spells" parent="UI" instance=ExtResource("6_had75")]
+[node name="UI" parent="UI" instance=ExtResource("6_had75")]
 metadata/_edit_lock_ = true
-
-[node name="Line2D" type="Line2D" parent="."]
-modulate = Color(5, 5, 1, 1)
-points = PackedVector2Array(200, 123, 251, 602)
