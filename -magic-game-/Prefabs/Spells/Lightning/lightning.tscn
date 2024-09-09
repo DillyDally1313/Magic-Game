@@ -1,19 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://jtu5jx13ftfc"]
+[gd_scene load_steps=2 format=3 uid="uid://d25pivwrrdjp8"]
 
-[ext_resource type="Script" path="res://Scripts/Spells/Lightning.cs" id="1_4ptbp"]
-[ext_resource type="Texture2D" uid="uid://bo82kbkmaqsm1" path="res://Assets/Spells/Lightning/lightning0.png" id="1_ws1hd"]
+[ext_resource type="Script" path="res://Scripts/Spells/Lightning.cs" id="1_h1dys"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4c1v"]
-size = Vector2(32, 28)
-
-[node name="Lightning" type="RigidBody2D"]
-collision_layer = 4
-collision_mask = 2
-gravity_scale = 0.0
-script = ExtResource("1_4ptbp")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ws1hd")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_w4c1v")
+[node name="Lightning" type="Node2D"]
+modulate = Color(5, 5, 1, 1)
+script = ExtResource("1_h1dys")

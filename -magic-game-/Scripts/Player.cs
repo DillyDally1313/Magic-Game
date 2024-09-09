@@ -86,6 +86,7 @@ public partial class Player : CharacterBody2D {
 				break;
 			}
 			case "lightning": {
+				/*
 				Vector2 start = Position;
 				Vector2 direction = (target.Position - Position).Normalized();
 				float distance = Position.DistanceTo(target.Position);
@@ -100,6 +101,14 @@ public partial class Player : CharacterBody2D {
 
 					//await ToSignal(GetTree().CreateTimer(.002), "timeout");
 				}
+				*/
+
+				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
+				GetNode("/root/Main").AddChild(lightning);
+
+				lightning.Initialize(4);
+				lightning.DrawLightning(Position, target.Position);
+
 				break;
 			}
 		}
