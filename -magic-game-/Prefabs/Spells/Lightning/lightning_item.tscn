@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b8ijd0w07tbpp"]
 
-[ext_resource type="Texture2D" uid="uid://b058nwjbg6u78" path="res://Assets/Spells/Lightning/lightning_icon.png" id="1_1yxsd"]
+[ext_resource type="Texture2D" uid="uid://bponjsfgw5lxv" path="res://Assets/Spells/Lightning/lightning_icon.png" id="1_1yxsd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uddyl"]
 size = Vector2(29, 32)
@@ -8,6 +8,7 @@ size = Vector2(29, 32)
 [node name="Lightning" type="Area2D" groups=["SpellPickups"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(3, 1, 3, 1)
 texture = ExtResource("1_1yxsd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

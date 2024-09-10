@@ -12,7 +12,7 @@ public partial class Player : CharacterBody2D {
 	// main physics loop, runs every frame
 	public override void _PhysicsProcess(double delta) {
 		Vector2 velocity = Velocity;
-		Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");	
+		Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 		
 		// move the player and slow down if they stop moving			
 		if (direction != Vector2.Zero) {
@@ -100,6 +100,14 @@ public partial class Player : CharacterBody2D {
 
 				lightning.Initialize(6);
 				lightning.DrawLightning(start, enemyPos);
+
+				break;
+			}
+
+			case "earthblock": {
+				Earthblock earthblock = GD.Load<PackedScene>("res://Prefabs/Spells/Earthblock/earthblock.tscn").Instantiate<Earthblock>();
+				earthblock.Position = Position + new Vector2(0, -spawnDistance);
+				GetNode("/root/Main").AddChild(earthblock);
 
 				break;
 			}

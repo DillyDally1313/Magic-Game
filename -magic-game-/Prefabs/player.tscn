@@ -4,19 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_ha3d8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcbn2"]
-size = Vector2(38, 38)
+size = Vector2(32, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mkiv0"]
-radius = 16.7135
+radius = 16.6906
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_jsci4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.25, 0.375)
 texture = ExtResource("2_ha3d8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_fcbn2")
 
 [node name="PickUpArea" type="Area2D" parent="."]

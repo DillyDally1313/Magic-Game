@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://62b0u5phmu2t"]
+
+[ext_resource type="Texture2D" uid="uid://b18mriyjm1qtq" path="res://Assets/Spells/Earthblock/earthblock-up.png" id="1_aj8ph"]
+[ext_resource type="Script" path="res://Scripts/Spells/Earthblock.cs" id="1_rdakv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72sor"]
+size = Vector2(64, 5)
+
+[node name="Earthblock" type="StaticBody2D"]
+script = ExtResource("1_rdakv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -42)
+scale = Vector2(2, 2)
+texture = ExtResource("1_aj8ph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_72sor")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

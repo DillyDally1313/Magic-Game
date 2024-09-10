@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c24vjdbpjmeg5"]
+[gd_scene load_steps=11 format=3 uid="uid://c24vjdbpjmeg5"]
 
 [ext_resource type="PackedScene" uid="uid://dbqhmpl3vbu5g" path="res://Prefabs/player.tscn" id="1_4lcrh"]
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_4djil"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ctju373vaiqiu" path="res://Prefabs/Spells/Airblast/airblast_item.tscn" id="2_76yyu"]
 [ext_resource type="PackedScene" uid="uid://dvvhhjisdf0wr" path="res://Prefabs/Spells/Fireball/fireball_item.tscn" id="3_dy5di"]
 [ext_resource type="PackedScene" uid="uid://dsxnfiqx3r3mt" path="res://Scenes/ui.tscn" id="6_had75"]
+[ext_resource type="PackedScene" uid="uid://dlp67xyjx8doo" path="res://Prefabs/Spells/Earthblock/earthblock_item.tscn" id="7_2djbv"]
 [ext_resource type="PackedScene" uid="uid://b8ijd0w07tbpp" path="res://Prefabs/Spells/Lightning/lightning_item.tscn" id="7_gkf2j"]
 
 [sub_resource type="Environment" id="Environment_1q2c1"]
@@ -43,15 +44,19 @@ texture = ExtResource("2_4djil")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="target"]
 shape = SubResource("RectangleShape2D_aq7ra")
 
-[node name="Fireball" parent="." instance=ExtResource("3_dy5di")]
+[node name="SpellObjects" type="Node2D" parent="."]
+
+[node name="Fireball" parent="SpellObjects" instance=ExtResource("3_dy5di")]
 position = Vector2(478, 473)
 
-[node name="AirBlast" parent="." instance=ExtResource("2_76yyu")]
+[node name="AirBlast" parent="SpellObjects" instance=ExtResource("2_76yyu")]
 position = Vector2(631, 536)
 
-[node name="Lightning" parent="." instance=ExtResource("7_gkf2j")]
-modulate = Color(5, 1, 1, 1)
+[node name="Lightning" parent="SpellObjects" instance=ExtResource("7_gkf2j")]
 position = Vector2(788, 476)
+
+[node name="Earthblock" parent="SpellObjects" instance=ExtResource("7_2djbv")]
+position = Vector2(476, 344)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

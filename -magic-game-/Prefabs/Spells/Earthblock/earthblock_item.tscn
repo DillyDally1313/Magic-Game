@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlp67xyjx8doo"]
+
+[ext_resource type="Texture2D" uid="uid://2n42i21kju1n" path="res://Assets/Spells/Earthblock/earthblock_icon.png" id="1_tu0m2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2yepn"]
+radius = 15.0
+
+[node name="Earthblock" type="Area2D" groups=["SpellPickups"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tu0m2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_2yepn")
