@@ -1,9 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dsxnfiqx3r3mt"]
+[gd_scene load_steps=20 format=3 uid="uid://dsxnfiqx3r3mt"]
 
 [ext_resource type="Script" path="res://Scripts/UI/EquipedSpells.cs" id="1_nvbu0"]
 [ext_resource type="Texture2D" uid="uid://b3jl58hoy8p0q" path="res://Assets/Spells/Fireball/fireball_icon.png" id="2_2wwkg"]
 [ext_resource type="Texture2D" uid="uid://djwqflt3b5288" path="res://Assets/UI/shroom_icon.png" id="3_6mtho"]
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="3_onju7"]
+[ext_resource type="Texture2D" uid="uid://cdpyr1g2nds55" path="res://Assets/UI/ui-frame.png" id="4_ttkkk"]
+[ext_resource type="Script" path="res://Scripts/Shop.cs" id="5_72biq"]
+[ext_resource type="Texture2D" uid="uid://cvh023gfmdwvp" path="res://Assets/Spells/Airblast/airblast_icon.png" id="6_t2c6h"]
+[ext_resource type="Texture2D" uid="uid://bponjsfgw5lxv" path="res://Assets/Spells/Lightning/lightning_icon.png" id="7_qo2dy"]
+[ext_resource type="PackedScene" uid="uid://bb7q5psqarxc8" path="res://Prefabs/ShopItems/Item.tscn" id="7_vs8du"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knxta"]
 draw_center = false
@@ -98,6 +103,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Spells" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -256,31 +262,182 @@ size_flags_vertical = 4
 texture = ExtResource("3_onju7")
 expand_mode = 1
 
-[node name="Currency" type="PanelContainer" parent="."]
-visible = false
+[node name="Shop" type="NinePatchRect" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1270.0
-offset_top = 10.0
-offset_right = -1197.0
-offset_bottom = 42.0
-grow_horizontal = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -248.5
+offset_right = 500.0
+offset_bottom = 248.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ttkkk")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+script = ExtResource("5_72biq")
+
+[node name="Currency" type="PanelContainer" parent="Shop"]
+layout_mode = 1
+offset_left = 46.0
+offset_top = 25.5
+offset_right = 126.0
+offset_bottom = 60.5
 scale = Vector2(2, 2)
 theme_override_styles/panel = SubResource("StyleBoxFlat_7ui83")
 
-[node name="Shrooms" type="HBoxContainer" parent="Currency"]
+[node name="Shrooms" type="HBoxContainer" parent="Shop/Currency"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="ShroomsImage" type="TextureRect" parent="Currency/Shrooms"]
+[node name="Icon" type="TextureRect" parent="Shop/Currency/Shrooms"]
 layout_mode = 2
+size_flags_vertical = 4
 texture = ExtResource("3_6mtho")
-stretch_mode = 3
+stretch_mode = 2
 
-[node name="ShroomsText" type="Label" parent="Currency/Shrooms"]
+[node name="Balance" type="RichTextLabel" parent="Shop/Currency/Shrooms"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 21
-text = "100"
-vertical_alignment = 1
+theme_override_font_sizes/normal_font_size = 25
+text = "999"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Stock" type="NinePatchRect" parent="Shop"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -396.0
+offset_right = 343.0
+offset_bottom = -28.0
+grow_vertical = 0
+texture = ExtResource("4_ttkkk")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+
+[node name="ItemMargin" type="MarginContainer" parent="Shop/Stock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ItemList" type="VBoxContainer" parent="Shop/Stock/ItemMargin"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="AirBlast" parent="Shop/Stock/ItemMargin/ItemList" instance=ExtResource("7_vs8du")]
+layout_mode = 2
+icon = ExtResource("6_t2c6h")
+icon = ExtResource("6_t2c6h")
+name = "Air Blast"
+price = "200"
+description = "Airblast: Unleash a powerful burst of wind that knocks back enemies and disrupts their footing. The spell deals moderate damage and briefly stuns foes caught in its radius."
+
+[node name="Fireball" parent="Shop/Stock/ItemMargin/ItemList" instance=ExtResource("7_vs8du")]
+layout_mode = 2
+icon = ExtResource("2_2wwkg")
+icon = ExtResource("2_2wwkg")
+name = "Fireball"
+price = "150"
+description = "Fireball: Unleash a fiery orb that explodes on impact, dealing heavy fire damage to enemies in its radius. Ideal for group damage, but use cautiously!"
+
+[node name="Lightning" parent="Shop/Stock/ItemMargin/ItemList" instance=ExtResource("7_vs8du")]
+layout_mode = 2
+icon = ExtResource("7_qo2dy")
+icon = ExtResource("7_qo2dy")
+name = "Lightning"
+price = "250"
+description = "Lightning Surge\": Unleash a crackling bolt of electricity that arcs between enemies, dealing instant damage and briefly stunning those it hits. The spell jumps between multiple targets."
+
+[node name="ItemInfo" type="NinePatchRect" parent="Shop"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -630.0
+offset_top = -274.0
+offset_right = -35.0
+offset_bottom = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("4_ttkkk")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+
+[node name="InfoMargin" type="MarginContainer" parent="Shop/ItemInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Details" type="HBoxContainer" parent="Shop/ItemInfo/InfoMargin"]
+layout_mode = 2
+
+[node name="Item" type="VBoxContainer" parent="Shop/ItemInfo/InfoMargin/Details"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_constants/separation = 0
+
+[node name="Name" type="RichTextLabel" parent="Shop/ItemInfo/InfoMargin/Details/Item"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 35
+text = "Fireball"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Icon" type="TextureRect" parent="Shop/ItemInfo/InfoMargin/Details/Item"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("2_2wwkg")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="Info" type="VBoxContainer" parent="Shop/ItemInfo/InfoMargin/Details"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="RichTextLabel" parent="Shop/ItemInfo/InfoMargin/Details/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 16
+text = "\"Lightning Surge\": Unleash a crackling bolt of electricity that arcs between enemies, dealing instant damage and briefly stunning those it hits. The spell grows stronger as it jumps between multiple targets."
+fit_content = true
+
+[node name="BuyButton" type="Button" parent="Shop/ItemInfo/InfoMargin/Details/Info"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 20
+text = "Purchase"
+
+[node name="ShopKeeper" type="Polygon2D" parent="Shop"]
+polygon = PackedVector2Array(412, 221.5, 411, 93.5, 369, 92.5, 366, 37.5, 961, 31.5, 961, 91.5, 911, 89.5, 910, 221.5, 871, 224.5, 868, 89.5, 450, 89.5, 453, 224.5)
