@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://d25pivwrrdjp8"]
+[gd_scene load_steps=5 format=3 uid="uid://b0w3vh3746tla"]
 
 [ext_resource type="Script" path="res://Scripts/Spells/Lightning.cs" id="1_h1dys"]
+[ext_resource type="Shader" uid="uid://co0a6ck8mcv2t" path="res://Assets/lightning_shader.tres" id="2_5nibd"]
+[ext_resource type="Texture2D" uid="uid://d37qo4eurjmpt" path="res://Assets/lightning_texture.png" id="2_ifki8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_666vt"]
+shader = ExtResource("2_5nibd")
+shader_parameter/Vanishing_Value = 0.0
+shader_parameter/Speed = Vector2(-2, 0)
+shader_parameter/Texture = ExtResource("2_ifki8")
 
 [node name="Lightning" type="Node2D"]
 modulate = Color(5, 1, 5, 1)
+material = SubResource("ShaderMaterial_666vt")
 script = ExtResource("1_h1dys")

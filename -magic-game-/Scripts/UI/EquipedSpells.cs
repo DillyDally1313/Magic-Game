@@ -2,8 +2,12 @@ using System.Collections.Generic;
 using Godot;
 
 public partial class EquipedSpells : PanelContainer {
-	List<TextureRect> spellSlotImages;
-	List<Panel> spellSlots;
+	List<Panel> spellBacks;
+	List<TextureRect> spellImgs;
+
+	Panel bossSpellBack;
+	TextureRect bossSpellImg;
+	
 
 	Player player;
 	List<string> equipedSpells;
@@ -15,17 +19,20 @@ public partial class EquipedSpells : PanelContainer {
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		spellSlots = new List<Panel>() {
-			GetNode<Panel>("SpellSlots/Slot1"),
-			GetNode<Panel>("SpellSlots/Slot2"),
-			GetNode<Panel>("SpellSlots/Slot3")
+		spellBacks = new List<Panel>() {
+			GetNode<Panel>("MainSpells/SpellSlots/Slots/Slot1"),
+			GetNode<Panel>("MainSpells/SpellSlots/Slots/Slot2"),
+			GetNode<Panel>("MainSpells/SpellSlots/Slots/Slot3")
 		};
 
-		spellSlotImages = new List<TextureRect>() {
-			GetNode<TextureRect>("EquipedSpells/Margin1/Spell1"),
-			GetNode<TextureRect>("EquipedSpells/Margin2/Spell2"),
-			GetNode<TextureRect>("EquipedSpells/Margin3/Spell3")
+		spellImgs = new List<TextureRect>() {
+			GetNode<TextureRect>("MainSpells/SpellSlots/Slots/Slot1/Spell"),
+			GetNode<TextureRect>("MainSpells/SpellSlots/Slots/Slot2/Spell"),
+			GetNode<TextureRect>("MainSpells/SpellSlots/Slots/Slot3/Spell")
 		};
+
+		bossSpellBack = GetNode<Panel>("BossSpell/SpellSlot/Slot");
+		bossSpellImg = GetNode<TextureRect>("BossSpell/SpellSlot/Slot/Spell");
 
 		player = GetNode<Player>("/root/Main/Player");
 	}
@@ -38,20 +45,20 @@ public partial class EquipedSpells : PanelContainer {
 		// update spell slot image to reflect current spells
 		for (int i = 0; i < 3; i++) {
 			if (equipedSpells.Count >= i + 1) {
-				spellSlotImages[i].Texture = GD.Load<Texture2D>("res://Assets/Spells/" + equipedSpells[i].Capitalize() + "/" + equipedSpells[i] + "_icon.png");
+				spellImgs[i].Texture = GD.Load<Texture2D>("res://Assets/Spells/" + equipedSpells[i].Capitalize() + "/" + equipedSpells[i] + "_icon.png");
 			} else {
-				spellSlotImages[i].Texture = null;
+				spellImgs[i].Texture = null;
 			}
 			
 			// outline which spell is currently being used
 			if (i == currentSpell) {
-				StyleBox stylebox = spellSlots[i].GetThemeStylebox("panel");
+				StyleBox stylebox = spellBacks[i].GetThemeStylebox("panel");
 				stylebox.Set("bg_color", activeColor);
-				spellSlots[i].AddThemeStyleboxOverride("panel", stylebox);
+				spellBacks[i].AddThemeStyleboxOverride("panel", stylebox);
 			} else {
-				StyleBox stylebox = spellSlots[i].GetThemeStylebox("panel");
+				StyleBox stylebox = spellBacks[i].GetThemeStylebox("panel");
 				stylebox.Set("bg_color", inactiveColor);
-				spellSlots[i].AddThemeStyleboxOverride("panel", stylebox);
+				spellBacks[i].AddThemeStyleboxOverride("panel", stylebox);
 			}
 		}
 	}

@@ -4,6 +4,7 @@ using Godot;
 public partial class Player : CharacterBody2D {
 	float moveSpeed = 300;
 	public int currentSpell;
+	public bool attacking = false;
 
 	// all available spells
 	List<string> availableSpells = new();
@@ -30,6 +31,7 @@ public partial class Player : CharacterBody2D {
 		// use the spell
 		if (Input.IsActionJustPressed("use_spell")) {
 			if (useableSpells.Count > 0){
+				attacking = true;
 				UseSpell();
 			}
 		}
@@ -93,6 +95,7 @@ public partial class Player : CharacterBody2D {
 				break;
 			}
 			case "lightning": {
+				/*
 				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
 
 				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
@@ -100,6 +103,15 @@ public partial class Player : CharacterBody2D {
 
 				lightning.Initialize(6);
 				lightning.DrawLightning(start, enemyPos);
+				*/
+
+				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
+
+				Lightning2 lightning = GD.Load<PackedScene>("res://Prefabs/Spells/lightning_test.tscn").Instantiate<Lightning2>();
+
+				lightning.start = start;
+				lightning.target = enemyPos;
+				GetNode("/root/Main").AddChild(lightning);
 
 				break;
 			}
@@ -112,5 +124,6 @@ public partial class Player : CharacterBody2D {
 				break;
 			}
 		}
+		attacking = false;
 	}
 }

@@ -1,35 +1,90 @@
-[gd_scene load_steps=8 format=3 uid="uid://dsxnfiqx3r3mt"]
+[gd_scene load_steps=15 format=3 uid="uid://dsxnfiqx3r3mt"]
 
 [ext_resource type="Script" path="res://Scripts/UI/EquipedSpells.cs" id="1_nvbu0"]
 [ext_resource type="Texture2D" uid="uid://b3jl58hoy8p0q" path="res://Assets/Spells/Fireball/fireball_icon.png" id="2_2wwkg"]
 [ext_resource type="Texture2D" uid="uid://djwqflt3b5288" path="res://Assets/UI/shroom_icon.png" id="3_6mtho"]
+[ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="3_onju7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knxta"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmc5q"]
+bg_color = Color(0.229657, 0.119355, 0.0487558, 1)
+border_width_left = 3
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_right = 20
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5s7o"]
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6qxb"]
 bg_color = Color(0.23394, 0.0789909, 0.469451, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cfp6"]
 bg_color = Color(0.14338, 0.488004, 0.492904, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wmm7v"]
+draw_center = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5mws"]
 bg_color = Color(0.14338, 0.488004, 0.492904, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
 border_color = Color(0, 0, 0, 1)
 border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_enqkf"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shwoj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ui83"]
 bg_color = Color(0.182, 0.669, 0.748, 0)
@@ -44,78 +99,162 @@ grow_vertical = 2
 
 [node name="Spells" type="PanelContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 10.0
-offset_top = -126.0
-offset_right = 52.0
-grow_vertical = 2
+offset_top = -260.0
+offset_right = 135.0
+offset_bottom = -135.0
+grow_vertical = 0
 scale = Vector2(2, 2)
+theme_override_styles/panel = SubResource("StyleBoxFlat_knxta")
 script = ExtResource("1_nvbu0")
 
-[node name="Background" type="ColorRect" parent="Spells"]
+[node name="Background" type="Panel" parent="Spells"]
 layout_mode = 2
-color = Color(6.61798e-08, 0.15719, 0.164271, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmc5q")
 
-[node name="SpellSlots" type="VBoxContainer" parent="Spells"]
+[node name="MainSpells" type="Panel" parent="Spells"]
 layout_mode = 2
-theme_override_constants/separation = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p5s7o")
 
-[node name="Slot1" type="Panel" parent="Spells/SpellSlots"]
+[node name="SpellSlots" type="MarginContainer" parent="Spells/MainSpells"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_bottom = 103.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="Slots" type="GridContainer" parent="Spells/MainSpells/SpellSlots"]
 layout_mode = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="Slot1" type="Panel" parent="Spells/MainSpells/SpellSlots/Slots"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_f6qxb")
 
-[node name="Slot2" type="Panel" parent="Spells/SpellSlots"]
+[node name="Spell" type="TextureRect" parent="Spells/MainSpells/SpellSlots/Slots/Slot1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_2wwkg")
+stretch_mode = 2
+
+[node name="Slot2" type="Panel" parent="Spells/MainSpells/SpellSlots/Slots"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_6cfp6")
 
-[node name="Slot3" type="Panel" parent="Spells/SpellSlots"]
+[node name="Spell" type="TextureRect" parent="Spells/MainSpells/SpellSlots/Slots/Slot2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_2wwkg")
+stretch_mode = 2
+
+[node name="empty" type="Panel" parent="Spells/MainSpells/SpellSlots/Slots"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_wmm7v")
+
+[node name="Slot3" type="Panel" parent="Spells/MainSpells/SpellSlots/Slots"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_c5mws")
 
-[node name="EquipedSpells" type="VBoxContainer" parent="Spells"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="Margin1" type="MarginContainer" parent="Spells/EquipedSpells"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Spell1" type="TextureRect" parent="Spells/EquipedSpells/Margin1"]
-layout_mode = 2
+[node name="Spell" type="TextureRect" parent="Spells/MainSpells/SpellSlots/Slots/Slot3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_2wwkg")
 stretch_mode = 2
 
-[node name="Margin2" type="MarginContainer" parent="Spells/EquipedSpells"]
+[node name="BossSpell" type="Panel" parent="Spells"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+theme_override_styles/panel = SubResource("StyleBoxFlat_enqkf")
 
-[node name="Spell2" type="TextureRect" parent="Spells/EquipedSpells/Margin2"]
-layout_mode = 2
-texture = ExtResource("2_2wwkg")
-stretch_mode = 2
+[node name="SpellSlot" type="MarginContainer" parent="Spells/BossSpell"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 70.0
+grow_vertical = 0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 4
 
-[node name="Margin3" type="MarginContainer" parent="Spells/EquipedSpells"]
+[node name="Slot" type="Panel" parent="Spells/BossSpell/SpellSlot"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_shwoj")
 
-[node name="Spell3" type="TextureRect" parent="Spells/EquipedSpells/Margin3"]
-layout_mode = 2
-texture = ExtResource("2_2wwkg")
-stretch_mode = 2
+[node name="Spell" type="TextureRect" parent="Spells/BossSpell/SpellSlot/Slot"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_onju7")
+expand_mode = 1
 
 [node name="Currency" type="PanelContainer" parent="."]
 visible = false

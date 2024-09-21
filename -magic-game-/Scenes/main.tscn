@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbqhmpl3vbu5g" path="res://Prefabs/player.tscn" id="1_4lcrh"]
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_4djil"]
-[ext_resource type="Script" path="res://Scripts/Target.cs" id="2_5scar"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Target.cs" id="2_5scar"]
 [ext_resource type="PackedScene" uid="uid://ctju373vaiqiu" path="res://Prefabs/Spells/Airblast/airblast_item.tscn" id="2_76yyu"]
 [ext_resource type="PackedScene" uid="uid://dvvhhjisdf0wr" path="res://Prefabs/Spells/Fireball/fireball_item.tscn" id="3_dy5di"]
 [ext_resource type="PackedScene" uid="uid://dsxnfiqx3r3mt" path="res://Scenes/ui.tscn" id="6_had75"]
