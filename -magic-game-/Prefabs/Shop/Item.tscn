@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bb7q5psqarxc8"]
 
-[ext_resource type="Script" path="res://Prefabs/ShopItems/Item.cs" id="1_jebqf"]
+[ext_resource type="Script" path="res://Scripts/UI/Shop/Item.cs" id="1_jebqf"]
 [ext_resource type="Texture2D" uid="uid://b3jl58hoy8p0q" path="res://Assets/Spells/Fireball/fireball_icon.png" id="1_ldr75"]
 [ext_resource type="Texture2D" uid="uid://djwqflt3b5288" path="res://Assets/UI/shroom_icon.png" id="2_m8lew"]
 

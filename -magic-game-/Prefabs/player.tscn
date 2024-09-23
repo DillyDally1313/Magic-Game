@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="3_t0nvw"]
 [ext_resource type="Script" path="res://Scripts/Player/States/PlayerIdle.cs" id="4_6o7d2"]
 [ext_resource type="Script" path="res://Scripts/Player/States/PlayerWalking.cs" id="5_2dtfb"]
-[ext_resource type="Script" path="res://Prefabs/PlayerAttacking.cs" id="6_swv44"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerAttacking.cs" id="6_swv44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcbn2"]
 size = Vector2(32, 11)

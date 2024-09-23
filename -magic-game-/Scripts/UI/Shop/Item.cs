@@ -16,7 +16,7 @@ public partial class Item : Button {
 
 	// set larger info when pressed
 	public void _OnPressed() {
-		if (Owner.GetNode("Shop") is Shop s) {
+		if (Owner is Shop s) {
 			s.SetInfo(this);
 		}
 	}
