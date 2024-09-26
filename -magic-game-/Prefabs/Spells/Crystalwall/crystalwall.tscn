@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://62b0u5phmu2t"]
+
+[ext_resource type="Script" path="res://Scripts/Spells/Crystalwall.cs" id="1_vdeip"]
+[ext_resource type="Texture2D" uid="uid://b3xbjtt7i238q" path="res://Assets/Spells/Crystalwall/crystallwall.png" id="2_i1sbp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72sor"]
+size = Vector2(61, 15)
+
+[node name="CrystalWall" type="StaticBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_vdeip")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -48)
+scale = Vector2(2, 2)
+texture = ExtResource("2_i1sbp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_72sor")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

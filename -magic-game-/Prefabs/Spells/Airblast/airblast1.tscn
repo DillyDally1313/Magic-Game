@@ -4,24 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://ctrut7gp7pe0h" path="res://Assets/Spells/Airblast/air-blast_mid.png" id="2_ayash"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jte4w"]
-size = Vector2(8, 24)
+size = Vector2(7, 24)
 
 [node name="Airblast1" type="RigidBody2D"]
-position = Vector2(8, 0)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_6vges")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2_ayash")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_jte4w")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(4.76837e-07, 2.38419e-07)
-scale = Vector2(0.8, 2.4)
+position = Vector2(7, 2.38419e-07)
+scale = Vector2(0.7, 2.4)
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_OnScreenExited"]

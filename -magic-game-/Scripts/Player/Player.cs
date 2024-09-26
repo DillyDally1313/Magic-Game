@@ -5,15 +5,23 @@ public partial class Player : CharacterBody2D {
 	float moveSpeed = 300;
 	public int currentSpell;
 	public bool attacking = false;
+	string facing = "down";
 
 	// all available spells
 	List<string> availableSpells = new();
 	public List<string> useableSpells = new();
 
+	[Export] CollisionShape2D feetCollider;
+
 	// main physics loop, runs every frame
 	public override void _PhysicsProcess(double delta) {
 		Vector2 velocity = Velocity;
 		Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
+
+		if (Input.IsActionJustPressed("move_up")) { facing = "up"; }
+		if (Input.IsActionJustPressed("move_down")) { facing = "down"; }
+		if (Input.IsActionJustPressed("move_left")) { facing = "left"; }
+		if (Input.IsActionJustPressed("move_right")) { facing = "right"; }
 		
 		// move the player and slow down if they stop moving			
 		if (direction != Vector2.Zero) {
@@ -64,20 +72,20 @@ public partial class Player : CharacterBody2D {
 
 	// instantiates spell
 	public async void UseSpell() {
-		float spawnDistance = 50;
+		float spawnDistance = 40;
 
 		Vector2 enemyPos = GetNode<Node2D>("/root/Main/target").Position;
 
 		switch (useableSpells[currentSpell]) {
 			case "fireball": {
 				Fireball fireball = GD.Load<PackedScene>("res://Prefabs/Spells/Fireball/fireball.tscn").Instantiate<Fireball>();
-				fireball.Position = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
+				fireball.Position = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
 				fireball.target = enemyPos;
 				GetNode("/root/Main").AddChild(fireball);
 				break;
 			}
 			case "airblast": {
-				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
+				Vector2 start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
 
 				for (int i = 0; i < 3; i++) {
 					Airblast airblast = GD.Load<PackedScene>("res://Prefabs/Spells/Airblast/airblast" + i + ".tscn").Instantiate<Airblast>();
@@ -105,25 +113,33 @@ public partial class Player : CharacterBody2D {
 				lightning.DrawLightning(start, enemyPos);
 				*/
 
-				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
-
-				Lightning2 lightning = GD.Load<PackedScene>("res://Prefabs/Spells/lightning_test.tscn").Instantiate<Lightning2>();
-
-				lightning.start = start;
+				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
+				lightning.start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
 				lightning.target = enemyPos;
 				GetNode("/root/Main").AddChild(lightning);
 
 				break;
 			}
 
-			case "earthblock": {
-				Earthblock earthblock = GD.Load<PackedScene>("res://Prefabs/Spells/Earthblock/earthblock.tscn").Instantiate<Earthblock>();
-				earthblock.Position = Position + new Vector2(0, -spawnDistance);
-				GetNode("/root/Main").AddChild(earthblock);
+			case "crystalwall": {
+				Crystalwall crystalwall = GD.Load<PackedScene>("res://Prefabs/Spells/Crystalwall/crystalwall.tscn").Instantiate<Crystalwall>();
+				
+				// change where wall is spawned based on direction player is facing
+				if (facing.Equals("down")) {
+					crystalwall.Position = feetCollider.GlobalPosition + new Vector2(0, spawnDistance);
+				} else {
+					crystalwall.Position = feetCollider.GlobalPosition + new Vector2(0, -spawnDistance);
+				}
+
+				GetNode("/root/Main").AddChild(crystalwall);
 
 				break;
 			}
 		}
 		attacking = false;
 	}
+
+    public override void _Draw() {
+		DrawCircle(feetCollider.Position, 40, Color.Color8(255, 0, 0), false, 2);
+    }
 }

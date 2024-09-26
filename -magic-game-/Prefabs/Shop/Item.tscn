@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://djwqflt3b5288" path="res://Assets/UI/shroom_icon.png" id="2_m8lew"]
 
 [node name="Item1" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
 size_flags_vertical = 3
 alignment = 0
 script = ExtResource("1_jebqf")
@@ -20,17 +22,18 @@ offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 0
 
 [node name="Title" type="HBoxContainer" parent="ItemMargin"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
 
 [node name="Item" type="TextureRect" parent="ItemMargin/Title"]
 layout_mode = 2
+size_flags_horizontal = 4
 texture = ExtResource("1_ldr75")
-expand_mode = 2
+expand_mode = 3
 stretch_mode = 4
 
 [node name="Name" type="RichTextLabel" parent="ItemMargin/Title"]
@@ -38,7 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "Fireball"
 fit_content = true
@@ -47,14 +50,15 @@ autowrap_mode = 0
 [node name="Price" type="HBoxContainer" parent="ItemMargin"]
 layout_mode = 2
 size_flags_horizontal = 10
-theme_override_constants/separation = 1
+size_flags_vertical = 4
+theme_override_constants/separation = 0
 
 [node name="ShroomIcon" type="TextureRect" parent="ItemMargin/Price"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
 texture = ExtResource("2_m8lew")
-stretch_mode = 2
+expand_mode = 3
+stretch_mode = 4
 
 [node name="Price" type="RichTextLabel" parent="ItemMargin/Price"]
 layout_mode = 2

@@ -1,23 +1,32 @@
 using Godot;
 using System;
 
-public partial class Lightning : Node2D {
+public partial class Lightning : Line2D {
+	/*
 	public Line2D[] lines;
-
 	float segmentLength = 80;
 	float segmentWidth = 1.5f;
 	int spread = 30;
-	float timeAlive = 0.1f;
+	*/
+	
+	float timeAlive = 0.4f;
+    public Vector2 start;
+	public Vector2 target;
 
-	public Node2D target;
+    public override void _Ready() {
+		// make bolt go from player to enemy
+        SetPointPosition(1, start);
+        SetPointPosition(0, target);
+    }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override async void _Process(double delta) {
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override async void _Process(double delta) {
 		// remove after certain amount of time
 		await ToSignal(GetTree().CreateTimer(timeAlive), "timeout");
 		QueueFree();
 	}
 
+    /*
 	public void Initialize(int lineCount) {
 		lines = new Line2D[lineCount];
 		// create all the Line2Ds and change their starting values
@@ -62,4 +71,5 @@ public partial class Lightning : Node2D {
 			lines[i].SetPointPosition(segments - 1, target);
 		}
 	}
+	*/
 }

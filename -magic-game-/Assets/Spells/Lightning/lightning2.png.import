@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2n42i21kju1n"
-path="res://.godot/imported/earthblock_icon.png-20a21d79297a4b7647db1d9358f25d6e.ctex"
+uid="uid://bs1gxno7lbqv0"
+path="res://.godot/imported/lightning2.png-21b8f67ed1c6bf5e3243586209488b94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spells/Earthblock/earthblock_icon.png"
-dest_files=["res://.godot/imported/earthblock_icon.png-20a21d79297a4b7647db1d9358f25d6e.ctex"]
+source_file="res://Assets/Spells/Lightning/lightning2.png"
+dest_files=["res://.godot/imported/lightning2.png-21b8f67ed1c6bf5e3243586209488b94.ctex"]
 
 [params]
 

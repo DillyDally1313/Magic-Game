@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b18mriyjm1qtq"
-path="res://.godot/imported/earthblock-up.png-71b6979e54161a819adccc4c32c184d0.ctex"
+uid="uid://bvfylvx2wfsfa"
+path="res://.godot/imported/crystalwall_icon.png-022c2ab344b27f0e5e087d695fa6e15a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Spells/Earthblock/earthblock-up.png"
-dest_files=["res://.godot/imported/earthblock-up.png-71b6979e54161a819adccc4c32c184d0.ctex"]
+source_file="res://Assets/Spells/Crystalwall/crystalwall_icon.png"
+dest_files=["res://.godot/imported/crystalwall_icon.png-022c2ab344b27f0e5e087d695fa6e15a.ctex"]
 
 [params]
 

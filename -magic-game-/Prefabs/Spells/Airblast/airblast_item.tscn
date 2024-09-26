@@ -8,7 +8,6 @@ size = Vector2(23, 32)
 [node name="AirBlast" type="Area2D" groups=["SpellPickups"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 2, 1)
 texture = ExtResource("1_ocyxf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
