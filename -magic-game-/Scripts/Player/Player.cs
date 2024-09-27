@@ -12,6 +12,7 @@ public partial class Player : CharacterBody2D {
 	public List<string> useableSpells = new();
 
 	[Export] CollisionShape2D feetCollider;
+	[Export] public AnimationPlayer animationPlayer;
 
 	// main physics loop, runs every frame
 	public override void _PhysicsProcess(double delta) {
