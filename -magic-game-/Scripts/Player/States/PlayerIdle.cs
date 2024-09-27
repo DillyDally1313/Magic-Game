@@ -11,14 +11,15 @@ public partial class PlayerIdle : State {
     public override void Enter() {
         Debug.Print("Idle State");
 
-        player.Modulate = Color.Color8(255, 0, 0);
+        player.GetNode<Sprite2D>("Sprite2D").Texture = GD.Load<Texture2D>("res://Assets/Player/player_sprite.png");
     }
 
     public override void HandleInput(InputEvent @event){
         if (@event.IsActionPressed("move_up") || @event.IsActionPressed("move_down") || @event.IsActionPressed("move_left") ||  @event.IsActionPressed("move_right")) {
 			fsm.ChangeState("walking");
 		}
-        if (player.attacking) {
+
+        if (@event.IsActionPressed("use_sword") || @event.IsActionPressed("use_spell")) {
             fsm.ChangeState("attacking");
         }
     }

@@ -11,14 +11,17 @@ public partial class PlayerWalking : State {
     public override void Enter() {
         Debug.Print("Walking State");
 
-        player.Modulate = Color.Color8(0, 255, 0);
+        player.GetNode<Sprite2D>("Sprite2D").Texture = GD.Load<Texture2D>("res://Assets/Player/player_sprite.png");
     }
 
     public override void PhysicsUpdate(float delta){
         if (player.Velocity == Vector2.Zero) {
 			fsm.ChangeState("idle");
 		}
-        if (player.attacking) {
+    }
+
+    public override void HandleInput(InputEvent @event){
+        if (@event.IsActionPressed("use_sword") || @event.IsActionPressed("use_spell")) {
             fsm.ChangeState("attacking");
         }
     }

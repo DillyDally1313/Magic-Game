@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using Godot;
 
@@ -9,14 +10,22 @@ public partial class PlayerAttacking : State {
     }
 
     public override void Enter() {
-        player.Modulate = Color.Color8(0, 0, 255);
+        Debug.Print("Attacking State");
 
-		Debug.Print("Attacking State");
+        player.animationPlayer.Play("attack_right");
     }
 
     public override void Update(float delta) {
+    }
+
+    public void _OnAnimationFinished(String animation) {
         if (!player.attacking) {
-			fsm.ChangeState("idle");
+            if (player.Velocity == Vector2.Zero) {
+                fsm.ChangeState("idle");
+            }
+            else {
+                fsm.ChangeState("walking");
+            }
 		}
     }
 
