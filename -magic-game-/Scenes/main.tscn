@@ -23,6 +23,7 @@ glow_hdr_scale = 1.0
 size = Vector2(52, 92)
 
 [node name="Main" type="Node2D"]
+physics_interpolation_mode = 1
 y_sort_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -37,10 +38,11 @@ zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
 
-[node name="target" type="StaticBody2D" parent="."]
+[node name="target" type="StaticBody2D" parent="." node_paths=PackedStringArray("player")]
 position = Vector2(266, 37)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("2_5scar")
+player = NodePath("../Player")
 
 [node name="Sprite2D" type="Sprite2D" parent="target"]
 scale = Vector2(0.4, 0.7)

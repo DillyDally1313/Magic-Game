@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 public partial class Player : CharacterBody2D {
-	float moveSpeed = 300;
+	float moveSpeed = 150;
 	public int currentSpell;
 	public bool attacking = false;
 	string facing = "down";

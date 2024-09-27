@@ -1,16 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0w3vh3746tla"]
+[gd_scene load_steps=13 format=3 uid="uid://b0w3vh3746tla"]
 
 [ext_resource type="Shader" uid="uid://k31bnjo8feub" path="res://Assets/Spells/Lightning/lightning.tres" id="1_dao40"]
 [ext_resource type="Script" path="res://Scripts/Spells/Lightning.cs" id="1_h1dys"]
 [ext_resource type="Texture2D" uid="uid://d4dd51kp4x7ip" path="res://Assets/Spells/Lightning/lightning1.png" id="1_xhu0d"]
 [ext_resource type="Texture2D" uid="uid://dcpc5gmejy0ov" path="res://Assets/Spells/Lightning/lightning0.png" id="3_gdto8"]
 [ext_resource type="Texture2D" uid="uid://bfp83sis6mo10" path="res://Assets/Spells/Lightning/lightning3.png" id="5_5fvbl"]
+[ext_resource type="Texture2D" uid="uid://bs1gxno7lbqv0" path="res://Assets/Spells/Lightning/lightning2.png" id="5_ewsmy"]
 [ext_resource type="Texture2D" uid="uid://ddrtr6ydewkat" path="res://Assets/Spells/Lightning/lightning4.png" id="6_fp0eg"]
 [ext_resource type="Texture2D" uid="uid://ksgl181gu6ul" path="res://Assets/Spells/Lightning/lightning5.png" id="7_njuj6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1jmk2"]
 shader = ExtResource("1_dao40")
-shader_parameter/Speed = Vector2(1.5, 0)
+shader_parameter/Speed = Vector2(2, 0)
 
 [sub_resource type="Animation" id="Animation_tlygw"]
 length = 0.001
@@ -40,7 +41,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_gdto8"), ExtResource("1_xhu0d"), ExtResource("5_5fvbl"), ExtResource("6_fp0eg"), ExtResource("7_njuj6")]
+"values": [ExtResource("3_gdto8"), ExtResource("5_ewsmy"), ExtResource("5_5fvbl"), ExtResource("6_fp0eg"), ExtResource("7_njuj6")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_480h0"]

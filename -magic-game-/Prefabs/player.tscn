@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://dbqhmpl3vbu5g"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_jsci4"]
-[ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_ha3d8"]
+[ext_resource type="Texture2D" uid="uid://c38ojic8m4qde" path="res://Assets/player_sprite.png" id="2_3b07s"]
 [ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="3_t0nvw"]
 [ext_resource type="Script" path="res://Scripts/Player/States/PlayerIdle.cs" id="4_6o7d2"]
 [ext_resource type="Script" path="res://Scripts/Player/States/PlayerWalking.cs" id="5_2dtfb"]
 [ext_resource type="Script" path="res://Scripts/Player/States/PlayerAttacking.cs" id="6_swv44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fcbn2"]
-size = Vector2(16, 3)
+size = Vector2(14, 2)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mkiv0"]
 radius = 8.33333
@@ -19,15 +19,15 @@ script = ExtResource("1_jsci4")
 feetCollider = NodePath("CollisionShape2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
-scale = Vector2(0.125, 0.227)
-texture = ExtResource("2_ha3d8")
+position = Vector2(0, -18)
+texture = ExtResource("2_3b07s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_fcbn2")
 
 [node name="PickUpArea" type="Area2D" parent="."]
+visible = false
 scale = Vector2(1.68, 1.6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
