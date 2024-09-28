@@ -12,8 +12,6 @@ public partial class EquipedSpells : PanelContainer {
 	Player player;
 	List<string> equipedSpells;
 
-	int currentSpell;
-
 	Color activeColor = Color.Color8(60, 20, 120);
 	Color inactiveColor = Color.Color8(37, 124, 126);
 
@@ -40,7 +38,6 @@ public partial class EquipedSpells : PanelContainer {
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
 		equipedSpells = player.useableSpells;
-		currentSpell = player.currentSpell;
 		
 		// update spell slot image to reflect current spells
 		for (int i = 0; i < 3; i++) {
@@ -48,17 +45,6 @@ public partial class EquipedSpells : PanelContainer {
 				spellImgs[i].Texture = GD.Load<Texture2D>("res://Assets/Spells/" + equipedSpells[i].Capitalize() + "/" + equipedSpells[i] + "_icon.png");
 			} else {
 				spellImgs[i].Texture = null;
-			}
-			
-			// outline which spell is currently being used
-			if (i == currentSpell) {
-				StyleBox stylebox = spellBacks[i].GetThemeStylebox("panel");
-				stylebox.Set("bg_color", activeColor);
-				spellBacks[i].AddThemeStyleboxOverride("panel", stylebox);
-			} else {
-				StyleBox stylebox = spellBacks[i].GetThemeStylebox("panel");
-				stylebox.Set("bg_color", inactiveColor);
-				spellBacks[i].AddThemeStyleboxOverride("panel", stylebox);
 			}
 		}
 	}

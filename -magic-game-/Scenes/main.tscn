@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c24vjdbpjmeg5"]
+[gd_scene load_steps=13 format=3 uid="uid://c24vjdbpjmeg5"]
 
 [ext_resource type="PackedScene" uid="uid://dbqhmpl3vbu5g" path="res://Prefabs/player.tscn" id="1_4lcrh"]
 [ext_resource type="Texture2D" uid="uid://bjntyyp7h0lbj" path="res://icon.svg" id="2_4djil"]
@@ -22,6 +22,10 @@ glow_hdr_scale = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aq7ra"]
 size = Vector2(52, 92)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qquuv"]
+radius = 19.0
+height = 78.0
 
 [node name="Main" type="Node2D"]
 physics_interpolation_mode = 1
@@ -67,10 +71,16 @@ position = Vector2(481, 248)
 [node name="CrystalWall" parent="SpellObjects" instance=ExtResource("7_2djbv")]
 position = Vector2(170, 124)
 
-[node name="Cauldron" type="Sprite2D" parent="."]
-position = Vector2(-38, 91)
+[node name="Cauldron" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Cauldron"]
 texture = ExtResource("8_ao7mj")
 offset = Vector2(0, -24.155)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qquuv")
 
 [node name="UI" type="CanvasLayer" parent="."]
 

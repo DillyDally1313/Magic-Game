@@ -19,14 +19,12 @@ public partial class PlayerAttacking : State {
     }
 
     public void _OnAnimationFinished(String animation) {
-        if (!player.attacking) {
-            if (player.Velocity == Vector2.Zero) {
-                fsm.ChangeState("idle");
-            }
-            else {
-                fsm.ChangeState("walking");
-            }
-		}
+        if (player.Velocity == Vector2.Zero) {
+            fsm.ChangeState("idle");
+        }
+        else {
+            fsm.ChangeState("walking");
+        }
     }
 
     public override void Exit() {

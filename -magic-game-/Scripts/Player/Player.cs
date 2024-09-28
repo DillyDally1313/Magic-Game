@@ -1,15 +1,15 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
 public partial class Player : CharacterBody2D {
 	float moveSpeed = 150;
-	public int currentSpell;
-	public bool attacking = false;
 	string facing = "down";
 
 	// all available spells
 	List<string> availableSpells = new();
 	public List<string> useableSpells = new();
+	public String bossSpell = null;
 
 	[Export] CollisionShape2D feetCollider;
 	[Export] public AnimationPlayer animationPlayer;
@@ -19,6 +19,7 @@ public partial class Player : CharacterBody2D {
 		Vector2 velocity = Velocity;
 		Vector2 direction = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
+		// set player direction
 		if (Input.IsActionJustPressed("move_up")) { facing = "up"; }
 		if (Input.IsActionJustPressed("move_down")) { facing = "down"; }
 		if (Input.IsActionJustPressed("move_left")) { facing = "left"; }
@@ -30,19 +31,6 @@ public partial class Player : CharacterBody2D {
 		} else {
 			velocity.X = Mathf.MoveToward(Velocity.X, 0, moveSpeed);
 			velocity.Y = Mathf.MoveToward(Velocity.Y, 0, moveSpeed);
-		}
-
-		// switch spells
-		if (Input.IsActionJustPressed("spell_slot1") && useableSpells.Count >= 1) { currentSpell = 0; }
-		if (Input.IsActionJustPressed("spell_slot2") && useableSpells.Count >= 2) { currentSpell = 1; }
-		if (Input.IsActionJustPressed("spell_slot3") && useableSpells.Count >= 3) { currentSpell = 2; }
-
-		// use the spell
-		if (Input.IsActionJustPressed("use_spell")) {
-			if (useableSpells.Count > 0){
-				attacking = true;
-				UseSpell();
-			}
 		}
 
 		// reset position and velocity, then move player
@@ -72,26 +60,26 @@ public partial class Player : CharacterBody2D {
 	}
 
 	// instantiates spell
-	public async void UseSpell() {
-		float spawnDistance = 40;
+	public async void UseSpell(int spellIndex) {
+		float spawnDistance = 20;
 
-		Vector2 enemyPos = GetNode<Node2D>("/root/Main/target").Position;
+		Vector2 mousePos = GetGlobalMousePosition();
 
-		switch (useableSpells[currentSpell]) {
+		switch (useableSpells[spellIndex]) {
 			case "fireball": {
 				Fireball fireball = GD.Load<PackedScene>("res://Prefabs/Spells/Fireball/fireball.tscn").Instantiate<Fireball>();
-				fireball.Position = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
-				fireball.target = enemyPos;
+				fireball.Position = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(mousePos);
+				fireball.Rotation = (mousePos - Position).Normalized().Angle();
 				GetNode("/root/Main").AddChild(fireball);
 				break;
 			}
 			case "airblast": {
-				Vector2 start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
+				Vector2 start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(mousePos);
 
 				for (int i = 0; i < 3; i++) {
 					Airblast airblast = GD.Load<PackedScene>("res://Prefabs/Spells/Airblast/airblast" + i + ".tscn").Instantiate<Airblast>();
 					airblast.Position = start;
-					airblast.target = enemyPos;
+					airblast.Rotation = (mousePos - Position).Normalized().Angle();
 					GetNode("/root/Main").AddChild(airblast);
 
 					if (i == 0) {
@@ -104,19 +92,9 @@ public partial class Player : CharacterBody2D {
 				break;
 			}
 			case "lightning": {
-				/*
-				Vector2 start = Position + new Vector2(spawnDistance, spawnDistance) * Position.DirectionTo(enemyPos);
-
 				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
-				GetNode("/root/Main").AddChild(lightning);
-
-				lightning.Initialize(6);
-				lightning.DrawLightning(start, enemyPos);
-				*/
-
-				Lightning lightning = GD.Load<PackedScene>("res://Prefabs/Spells/Lightning/lightning.tscn").Instantiate<Lightning>();
-				lightning.start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(enemyPos);
-				lightning.target = enemyPos;
+				lightning.start = feetCollider.GlobalPosition + new Vector2(spawnDistance, spawnDistance) * feetCollider.GlobalPosition.DirectionTo(mousePos);
+				lightning.mouse = mousePos;
 				GetNode("/root/Main").AddChild(lightning);
 
 				break;
@@ -137,10 +115,14 @@ public partial class Player : CharacterBody2D {
 				break;
 			}
 		}
-		attacking = false;
+	}
+
+	// instantiates boss spell
+	public void UseBossSpell(){
+
 	}
 
     public override void _Draw() {
-		DrawCircle(feetCollider.Position, 40, Color.Color8(255, 0, 0), false, 2);
+		DrawCircle(feetCollider.Position, 20, Color.Color8(255, 0, 0), false, 2);
     }
 }

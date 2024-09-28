@@ -7,8 +7,6 @@ public partial class Fireball : RigidBody2D {
 
 	// runs once when object is created
 	public override void _Ready() {
-		// rotate towards the target
-		Rotation = (target - Position).Normalized().Angle();
 	}
 
 	// main physics loop, runs once every frame

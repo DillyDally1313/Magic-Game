@@ -53,8 +53,8 @@ _data = {
 [node name="Lightning" type="Line2D"]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_1jmk2")
-points = PackedVector2Array(0, 0, 727, 354)
-width = 70.0
+points = PackedVector2Array(0, 0, 194, 106)
+width = 30.0
 texture = ExtResource("1_xhu0d")
 texture_mode = 1
 script = ExtResource("1_h1dys")
