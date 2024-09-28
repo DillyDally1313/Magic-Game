@@ -1,0 +1,122 @@
+[gd_scene load_steps=39 format=3 uid="uid://dbqhmpl3vbu5g"]
+
+[ext_resource type="Script" path="res://Scripts/Player/Player.cs" id="1_jsci4"]
+[ext_resource type="Texture2D" uid="uid://pof10aufwybv" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right1.png" id="2_y6of4"]
+[ext_resource type="Script" path="res://Scripts/StateMachine.cs" id="3_t0nvw"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerIdle.cs" id="4_6o7d2"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerWalking.cs" id="5_2dtfb"]
+[ext_resource type="Script" path="res://Scripts/Player/States/PlayerAttacking.cs" id="6_swv44"]
+[ext_resource type="Texture2D" uid="uid://dv1b8jy1nkiih" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right0.png" id="7_7k6jf"]
+[ext_resource type="Texture2D" uid="uid://cjavojn7y4lux" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right0.png" id="7_xai6o"]
+[ext_resource type="Texture2D" uid="uid://dcgtp77f4fkfh" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right1.png" id="8_3wywf"]
+[ext_resource type="Texture2D" uid="uid://dl3fv18ss8h0s" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right2.png" id="8_ch2ho"]
+[ext_resource type="Texture2D" uid="uid://c0wxdn1vkidew" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right2.png" id="9_nsw8o"]
+[ext_resource type="Texture2D" uid="uid://c67xm3nxj8lit" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right3.png" id="9_o6b44"]
+[ext_resource type="Texture2D" uid="uid://by4kalxw7rtqs" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right3.png" id="10_d1jpt"]
+[ext_resource type="Texture2D" uid="uid://br0cjjw2l6lmc" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right4.png" id="10_stvv8"]
+[ext_resource type="Texture2D" uid="uid://dfqsqibuyj61w" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right5.png" id="11_0qbrs"]
+[ext_resource type="Texture2D" uid="uid://c1cakul3dk0k5" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right4.png" id="11_8mb5f"]
+[ext_resource type="Texture2D" uid="uid://bskteglnply42" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right6.png" id="12_ix4ym"]
+[ext_resource type="Texture2D" uid="uid://dkaalj4uxbuf3" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right5.png" id="12_uk2lb"]
+[ext_resource type="Texture2D" uid="uid://x8hrj2hgk11g" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right7.png" id="13_kr57l"]
+[ext_resource type="Texture2D" uid="uid://4a5b7t1enk74" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right6.png" id="13_uc23v"]
+[ext_resource type="Texture2D" uid="uid://dbntg6lico7ks" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right8.png" id="14_cfwcu"]
+[ext_resource type="Texture2D" uid="uid://dn8yog36egv2h" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right7.png" id="14_ybvnr"]
+[ext_resource type="Texture2D" uid="uid://22g3l20c4am3" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right8.png" id="15_a367e"]
+[ext_resource type="Texture2D" uid="uid://fcvub5xvdpps" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right9.png" id="15_nrm6u"]
+[ext_resource type="Texture2D" uid="uid://c7knl07b17517" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right9.png" id="16_efs7b"]
+[ext_resource type="Texture2D" uid="uid://gjgpslkd5ogt" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right10.png" id="16_elpgx"]
+[ext_resource type="Texture2D" uid="uid://c18yjkw640h0s" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right11.png" id="17_2wso2"]
+[ext_resource type="Texture2D" uid="uid://mpx2uh4s7x7h" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right10.png" id="17_p2emk"]
+[ext_resource type="Texture2D" uid="uid://dby1i836pn1qs" path="res://Assets/Player/Attack/AttackRight/MagmaSlash/Right/magma_uplsash_right11.png" id="18_ltaiq"]
+[ext_resource type="Texture2D" uid="uid://d4ae7u03j8mnn" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right12.png" id="18_u44a2"]
+[ext_resource type="Texture2D" uid="uid://bpuwssy3p2ht1" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right13.png" id="19_n42ch"]
+[ext_resource type="Texture2D" uid="uid://bi0h0lsw0j1b6" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right14.png" id="20_6w0an"]
+[ext_resource type="Texture2D" uid="uid://dc3bop688pidc" path="res://Assets/Player/Attack/AttackRight/Slash/Right/upslash_right15.png" id="21_tfwp2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcbn2"]
+size = Vector2(14, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mkiv0"]
+radius = 8.33333
+
+[sub_resource type="Animation" id="Animation_qtm1j"]
+resource_name = "magma_slash_right"
+length = 0.596
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.075, 0.125, 0.175, 0.225, 0.26, 0.308, 0.356, 0.404, 0.452, 0.5, 0.548),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_xai6o"), ExtResource("8_3wywf"), ExtResource("9_nsw8o"), ExtResource("10_d1jpt"), ExtResource("11_8mb5f"), ExtResource("12_uk2lb"), ExtResource("13_uc23v"), ExtResource("14_ybvnr"), ExtResource("15_a367e"), ExtResource("16_efs7b"), ExtResource("17_p2emk"), ExtResource("18_ltaiq")]
+}
+
+[sub_resource type="Animation" id="Animation_wy5yj"]
+resource_name = "slash_right"
+length = 0.47
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.225, 0.3, 0.31, 0.32, 0.33, 0.34, 0.35, 0.36, 0.37, 0.38, 0.39, 0.4, 0.41, 0.42),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_7k6jf"), ExtResource("2_y6of4"), ExtResource("8_ch2ho"), ExtResource("9_o6b44"), ExtResource("10_stvv8"), ExtResource("11_0qbrs"), ExtResource("12_ix4ym"), ExtResource("13_kr57l"), ExtResource("14_cfwcu"), ExtResource("15_nrm6u"), ExtResource("16_elpgx"), ExtResource("17_2wso2"), ExtResource("18_u44a2"), ExtResource("19_n42ch"), ExtResource("20_6w0an"), ExtResource("21_tfwp2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqs1v"]
+_data = {
+"magma_slash_right": SubResource("Animation_qtm1j"),
+"slash_right": SubResource("Animation_wy5yj")
+}
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("feetCollider", "animationPlayer")]
+y_sort_enabled = true
+script = ExtResource("1_jsci4")
+feetCollider = NodePath("CollisionShape2D")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("7_xai6o")
+offset = Vector2(0, -19.31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_fcbn2")
+
+[node name="PickUpArea" type="Area2D" parent="."]
+scale = Vector2(1.68, 1.6)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUpArea"]
+position = Vector2(0, 0.625)
+shape = SubResource("CircleShape2D_mkiv0")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+script = ExtResource("3_t0nvw")
+initialState = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_6o7d2")
+
+[node name="walking" type="Node" parent="StateMachine"]
+script = ExtResource("5_2dtfb")
+
+[node name="attacking" type="Node" parent="StateMachine"]
+script = ExtResource("6_swv44")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lqs1v")
+}
+
+[connection signal="area_entered" from="PickUpArea" to="." method="_OnArea2DAreaEntered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/attacking" method="_OnAnimationFinished"]
