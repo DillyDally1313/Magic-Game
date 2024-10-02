@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dsxnfiqx3r3mt" path="res://Scenes/ui.tscn" id="6_had75"]
 [ext_resource type="PackedScene" uid="uid://dlp67xyjx8doo" path="res://Prefabs/Spells/Crystalwall/crystalwall_icon.tscn" id="7_2djbv"]
 [ext_resource type="PackedScene" uid="uid://b8ijd0w07tbpp" path="res://Prefabs/Spells/Lightning/lightning_item.tscn" id="7_gkf2j"]
-[ext_resource type="Texture2D" uid="uid://q01w6ori6kbx" path="res://Assets/cauldron.png" id="8_ao7mj"]
+[ext_resource type="Texture2D" uid="uid://b3d8wng6d1nhm" path="res://Assets/cauldron_rework.png" id="8_cehg3"]
 
 [sub_resource type="Environment" id="Environment_1q2c1"]
 background_mode = 3
@@ -24,8 +24,8 @@ glow_hdr_scale = 1.0
 size = Vector2(52, 92)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qquuv"]
-radius = 19.0
-height = 78.0
+radius = 23.0
+height = 112.0
 
 [node name="Main" type="Node2D"]
 physics_interpolation_mode = 1
@@ -75,8 +75,8 @@ position = Vector2(170, 124)
 y_sort_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Cauldron"]
-texture = ExtResource("8_ao7mj")
-offset = Vector2(0, -24.155)
+texture = ExtResource("8_cehg3")
+offset = Vector2(0, -40.94)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cauldron"]
 rotation = 1.5708
