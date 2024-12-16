@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3d8wng6d1nhm"
-path="res://.godot/imported/cauldron_rework.png-c2711bd9ec4431bfc217534a0810cf94.ctex"
+uid="uid://b7o7hm23pb7jf"
+path="res://.godot/imported/tilemap_packed.png-3cda1d058b8dee41715bd340cea497b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/cauldron_rework.png"
-dest_files=["res://.godot/imported/cauldron_rework.png-c2711bd9ec4431bfc217534a0810cf94.ctex"]
+source_file="res://Assets/tilemap_packed.png"
+dest_files=["res://.godot/imported/tilemap_packed.png-3cda1d058b8dee41715bd340cea497b0.ctex"]
 
 [params]
 
