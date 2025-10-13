@@ -1,0 +1,193 @@
+[gd_scene load_steps=9 format=3 uid="uid://bnpuylc7px4pj"]
+
+[ext_resource type="Texture2D" uid="uid://cdpyr1g2nds55" path="res://ui/assets/ui-frame.png" id="1_ey5dx"]
+[ext_resource type="Script" uid="uid://cb2tk58soufu" path="res://shop/scripts/Shop.cs" id="2_8x8wj"]
+[ext_resource type="Texture2D" uid="uid://djwqflt3b5288" path="res://ui/assets/icons/shroom_icon.png" id="3_w6lbf"]
+[ext_resource type="PackedScene" uid="uid://bb7q5psqarxc8" path="res://shop/scenes/Item.tscn" id="4_mgtjd"]
+[ext_resource type="Texture2D" uid="uid://cvh023gfmdwvp" path="res://entities/spells/air_blast/assets/air_blast_icon.png" id="5_ouj7m"]
+[ext_resource type="Texture2D" uid="uid://b3jl58hoy8p0q" path="res://entities/spells/fireball/assets/fireball_icon.png" id="6_1r8dy"]
+[ext_resource type="Texture2D" uid="uid://bponjsfgw5lxv" path="res://entities/spells/lightning/assets/lightning_icon.png" id="7_52up3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ui83"]
+bg_color = Color(0.182, 0.669, 0.748, 0)
+
+[node name="Shop" type="NinePatchRect" node_paths=PackedStringArray("displayName", "displayIcon", "displayDescription", "itemList")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -680.0
+offset_top = -404.0
+offset_right = 680.0
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ey5dx")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+script = ExtResource("2_8x8wj")
+displayName = NodePath("ItemInfo/InfoMargin/Info/Item/Name")
+displayIcon = NodePath("ItemInfo/InfoMargin/Info/Item/Icon")
+displayDescription = NodePath("ItemInfo/InfoMargin/Info/Description/Description")
+itemList = NodePath("Stock/ItemMargin/ItemList")
+
+[node name="Currency" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_left = 42.0
+offset_top = 24.0
+offset_right = 294.0
+offset_bottom = 119.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ui83")
+
+[node name="Shrooms" type="HBoxContainer" parent="Currency"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Icon" type="TextureRect" parent="Currency/Shrooms"]
+layout_mode = 2
+texture = ExtResource("3_w6lbf")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Balance" type="Label" parent="Currency/Shrooms"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 65
+text = "100"
+
+[node name="Stock" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -679.0
+offset_right = 515.0
+offset_bottom = -23.0
+grow_vertical = 0
+texture = ExtResource("1_ey5dx")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+
+[node name="ItemMargin" type="MarginContainer" parent="Stock"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 27
+theme_override_constants/margin_top = 27
+theme_override_constants/margin_right = 27
+theme_override_constants/margin_bottom = 27
+
+[node name="ItemList" type="VBoxContainer" parent="Stock/ItemMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="AirBlast" parent="Stock/ItemMargin/ItemList" instance=ExtResource("4_mgtjd")]
+layout_mode = 2
+icon = ExtResource("5_ouj7m")
+icon = ExtResource("5_ouj7m")
+name = "Air Blast"
+price = "200"
+description = "Airblast: Unleash a powerful burst of wind that knocks back enemies and disrupts their footing. The spell deals moderate damage and briefly stuns foes caught in its radius."
+
+[node name="Fireball" parent="Stock/ItemMargin/ItemList" instance=ExtResource("4_mgtjd")]
+layout_mode = 2
+icon = ExtResource("6_1r8dy")
+icon = ExtResource("6_1r8dy")
+name = "Fireball"
+price = "150"
+description = "Fireball: Unleash a fiery orb that explodes on impact, dealing heavy fire damage to enemies in its radius. Ideal for group damage, but use cautiously!"
+
+[node name="Lightning" parent="Stock/ItemMargin/ItemList" instance=ExtResource("4_mgtjd")]
+layout_mode = 2
+icon = ExtResource("7_52up3")
+icon = ExtResource("7_52up3")
+name = "Lightning"
+price = "250"
+description = "Lightning Surge: Unleash a crackling bolt of electricity that arcs between enemies, dealing instant damage and briefly stunning those it hits. The spell jumps between multiple targets."
+
+[node name="ItemInfo" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -836.0
+offset_top = -463.0
+offset_right = -23.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_ey5dx")
+patch_margin_left = 17
+patch_margin_top = 17
+patch_margin_right = 17
+patch_margin_bottom = 17
+
+[node name="InfoMargin" type="MarginContainer" parent="ItemInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Info" type="HBoxContainer" parent="ItemInfo/InfoMargin"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Item" type="VBoxContainer" parent="ItemInfo/InfoMargin/Info"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Name" type="RichTextLabel" parent="ItemInfo/InfoMargin/Info/Item"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 60
+text = "Fireball"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Icon" type="TextureRect" parent="ItemInfo/InfoMargin/Info/Item"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("6_1r8dy")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Description" type="VBoxContainer" parent="ItemInfo/InfoMargin/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Description" type="RichTextLabel" parent="ItemInfo/InfoMargin/Info/Description"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Fireball: Unleash a fiery orb that explodes on impact, dealing heavy fire damage to enemies in its radius. Ideal for group damage, but use cautiously!"
+
+[node name="BuyButton" type="Button" parent="ItemInfo/InfoMargin/Info/Description"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 25
+text = "Purchase"
+
+[node name="ShopKeeper" type="Polygon2D" parent="ItemInfo"]
+position = Vector2(14.7169, -0.752686)
+scale = Vector2(1.54831, 1.644)
+polygon = PackedVector2Array(54, 4, 52, -134, -12, -133, -12, -179, 248.352, -178.504, 513, -178, 513, -132, 443, -135, 441, 7, 404, 7, 404, -134, 91, -136, 84, 3)
