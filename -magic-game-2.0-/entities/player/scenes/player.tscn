@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://cprbeto4pfj3t"]
+
+[ext_resource type="Texture2D" uid="uid://bjeixxjlqmijx" path="res://icon.svg" id="1_erog5"]
+[ext_resource type="Script" uid="uid://cwj82du2nbqpj" path="res://entities/player/scripts/PlayerController.cs" id="1_xefbw"]
+[ext_resource type="Script" uid="uid://duo3do434s3h8" path="res://core/state_machine/StateMachine.cs" id="2_vn2cn"]
+[ext_resource type="Script" uid="uid://dl3ib65xkpwbp" path="res://entities/player/scripts/states/IdleState.cs" id="3_c3a0y"]
+[ext_resource type="Script" uid="uid://curdjyljq7oo2" path="res://entities/player/scripts/states/MoveState.cs" id="4_xefbw"]
+[ext_resource type="Script" uid="uid://d0tv61wkinna3" path="res://entities/player/scripts/states/JumpState.cs" id="5_2fsl7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2262g"]
+size = Vector2(64, 128)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_xefbw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_erog5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2262g")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState", "character")]
+script = ExtResource("2_vn2cn")
+initialState = NodePath("IdleState")
+character = NodePath("..")
+
+[node name="IdleState" type="Node" parent="StateMachine"]
+script = ExtResource("3_c3a0y")
+
+[node name="MoveState" type="Node" parent="StateMachine"]
+script = ExtResource("4_xefbw")
+
+[node name="JumpState" type="Node" parent="StateMachine"]
+script = ExtResource("5_2fsl7")
