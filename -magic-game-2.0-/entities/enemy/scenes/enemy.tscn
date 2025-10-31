@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://44ijmngyg5f"]
+
+[ext_resource type="Script" uid="uid://cn5cskrcmhxwt" path="res://entities/enemy/scripts/EnemyController.cs" id="1_8m36s"]
+[ext_resource type="Texture2D" uid="uid://bjeixxjlqmijx" path="res://icon.svg" id="2_ylpgd"]
+[ext_resource type="Script" uid="uid://cmoybjdy8yqsc" path="res://entities/enemy/scripts/components/EnemyAttackHitbox.cs" id="3_01ilp"]
+[ext_resource type="Script" uid="uid://duo3do434s3h8" path="res://core/state_machine/StateMachine.cs" id="4_1uot4"]
+[ext_resource type="Script" uid="uid://cgjo15ig54fao" path="res://entities/enemy/scripts/states/EnemyIdleState.cs" id="5_derr5"]
+[ext_resource type="Script" uid="uid://bxuj0dpgkd8qf" path="res://entities/enemy/scripts/states/EnemyAttackState.cs" id="6_rgkma"]
+[ext_resource type="Script" uid="uid://cogxogjx4od40" path="res://entities/enemy/scripts/states/EnemyStunnedState.cs" id="7_ylpgd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1504"]
+size = Vector2(64, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6et1j"]
+size = Vector2(91, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_etqu2"]
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_8m36s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -64)
+scale = Vector2(0.5, 1)
+texture = ExtResource("2_ylpgd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_m1504")
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+position = Vector2(-32, -64)
+script = ExtResource("3_01ilp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(-45.5, -0.125)
+shape = SubResource("RectangleShape2D_6et1j")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackHitbox"]
+position = Vector2(-45.5, -0.125)
+scale = Vector2(91.00001, 19.750002)
+texture = SubResource("CanvasTexture_etqu2")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState", "character")]
+script = ExtResource("4_1uot4")
+initialState = NodePath("EnemyIdleState")
+character = NodePath("..")
+
+[node name="EnemyIdleState" type="Node" parent="StateMachine"]
+script = ExtResource("5_derr5")
+
+[node name="EnemyAttackState" type="Node" parent="StateMachine" node_paths=PackedStringArray("attackDirectionLabel", "parryWindowLabel")]
+script = ExtResource("6_rgkma")
+attackDirectionLabel = NodePath("../../AttackDirection")
+parryWindowLabel = NodePath("../../ParryTimer")
+
+[node name="EnemyStunnedState" type="Node" parent="StateMachine"]
+script = ExtResource("7_ylpgd")
+
+[node name="AttackDirection" type="Label" parent="."]
+visible = false
+offset_left = -39.0
+offset_top = -150.0
+offset_right = 41.0
+offset_bottom = -127.0
+text = "FORWARD"
+
+[node name="ParryTimer" type="Label" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -150.0
+offset_right = 21.0
+offset_bottom = -127.0
+text = "0.00"

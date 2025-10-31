@@ -1,21 +1,23 @@
 using Godot;
 
-public partial class JumpState : State {
+public partial class PlayerJumpState : State {
     PlayerController player;
 
     public override void Enter() {
         player = character as PlayerController;
 
         // apply jump velocity
-        player.Velocity = new Vector2(player.Velocity.X, player.jumpSpeed);
-
+        if (player.canJump) {
+            player.Velocity = new Vector2(player.Velocity.X, player.jumpSpeed);
+            player.canJump = false;
+        } // if
         // play jump animation
     } // Enter
 
     public override void PhysicsProcess(float delta) {
         // handle movement in air
-        if (player.InputDirection != 0) {
-            float targetSpeed = player.InputDirection * player.maxSpeed;
+        if (player.HorizontalInput != 0) {
+            float targetSpeed = player.HorizontalInput * player.maxSpeed;
             if (player.IsSprinting) {
                 targetSpeed *= player.sprintMultipler;
             } // if
@@ -24,22 +26,28 @@ public partial class JumpState : State {
             player.Velocity = new Vector2(Mathf.MoveToward(player.Velocity.X, targetSpeed, player.acceleration * delta), player.Velocity.Y);
 
             // update facing direction
-            if (player.InputDirection != 0) {
-                player.facingDirection = Mathf.Sign(player.InputDirection);
+            if (player.HorizontalInput != 0) {
+                player.facingDirection = Mathf.Sign(player.HorizontalInput);
             } // if
         } else {
-            player.Velocity = new Vector2(Mathf.MoveToward(player.Velocity.X, 0, player.friction * delta), player.Velocity.Y);
+            player.ApplyFriction(delta);
+        } // if
+
+        // check if attacking
+        if (player.AttackJustPressed) {
+            stateMachine.ChangeState("PlayerAttackState");
+            return;
         } // if
 
         // check if landed
         if (player.IsOnFloor()) {
-            if (player.InputDirection != 0) {
-                stateMachine.ChangeState("MoveState");
+            if (player.HorizontalInput != 0) {
+                stateMachine.ChangeState("PlayerMoveState");
                 return;
             } else {
-                stateMachine.ChangeState("IdleState");
+                stateMachine.ChangeState("PlayerIdleState");
                 return;
             } // if
         } // if
     } // PhysicsProcess
-} // JumpState
+} // PlayerJumpState
