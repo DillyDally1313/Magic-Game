@@ -1,29 +1,176 @@
-[gd_scene load_steps=5 format=3 uid="uid://cac4j8q26r0q7"]
+[gd_scene load_steps=20 format=3 uid="uid://c8etwrquce5xg"]
 
 [ext_resource type="PackedScene" uid="uid://cprbeto4pfj3t" path="res://entities/player/scenes/player.tscn" id="1_wdj6m"]
-[ext_resource type="PackedScene" uid="uid://44ijmngyg5f" path="res://entities/enemy/scenes/enemy.tscn" id="2_wdj6m"]
+[ext_resource type="PackedScene" uid="uid://44ijmngyg5f" path="res://entities/enemies/base/enemy.tscn" id="2_wdj6m"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_2262g"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_46lwt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wdj6m"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g001"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_x25rp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p001"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_gmgay"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p002"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_w7r7j"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_o6mel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w001"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_e7anx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w002"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ur00s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sp001"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wndkh"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ly3hx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o001"]
+size = Vector2(64, 64)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4n8tn"]
 
 [node name="main" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_wdj6m")]
-position = Vector2(376, 926)
+position = Vector2(-328, 859)
 
 [node name="enemy" parent="." instance=ExtResource("2_wdj6m")]
-position = Vector2(1759, 997)
+position = Vector2(-1242, 940)
 
-[node name="ground" type="Node" parent="."]
+[node name="obstacles" type="Node" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ground"]
-position = Vector2(953, 1064)
-scale = Vector2(2000, 3.417)
+[node name="Ground" type="StaticBody2D" parent="obstacles"]
+position = Vector2(1908, 1038)
+scale = Vector2(4, 1)
 
-[node name="Sprite2D" type="Sprite2D" parent="ground/StaticBody2D"]
-scale = Vector2(20, 20)
-texture = SubResource("CanvasTexture_2262g")
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Ground"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(3839.9998, 127.99999)
+texture = SubResource("CanvasTexture_46lwt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
-shape = SubResource("RectangleShape2D_wdj6m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Ground"]
+scale = Vector2(60, 2)
+shape = SubResource("RectangleShape2D_g001")
+
+[node name="Platform1" type="StaticBody2D" parent="obstacles"]
+position = Vector2(708, 838)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Platform1"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(640, 63.99994)
+texture = SubResource("CanvasTexture_x25rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Platform1"]
+scale = Vector2(10, 1)
+shape = SubResource("RectangleShape2D_p001")
+
+[node name="Platform2" type="StaticBody2D" parent="obstacles"]
+position = Vector2(1708, 688)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Platform2"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(767.99976, 64.00006)
+texture = SubResource("CanvasTexture_gmgay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Platform2"]
+scale = Vector2(12, 1)
+shape = SubResource("RectangleShape2D_p002")
+
+[node name="Platform3" type="StaticBody2D" parent="obstacles"]
+position = Vector2(2708, 788)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Platform3"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(959.99994, 63.99997)
+texture = SubResource("CanvasTexture_w7r7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Platform3"]
+scale = Vector2(15, 1)
+shape = SubResource("RectangleShape2D_p002")
+
+[node name="Wall1" type="StaticBody2D" parent="obstacles"]
+position = Vector2(1108, 888)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Wall1"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(63.999863, 511.9999)
+texture = SubResource("CanvasTexture_o6mel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Wall1"]
+scale = Vector2(1, 8)
+shape = SubResource("RectangleShape2D_w001")
+
+[node name="Wall2" type="StaticBody2D" parent="obstacles"]
+position = Vector2(2308, 838)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Wall2"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(63.999924, 640)
+texture = SubResource("CanvasTexture_e7anx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Wall2"]
+scale = Vector2(1, 10)
+shape = SubResource("RectangleShape2D_w002")
+
+[node name="SmallPlatform1" type="StaticBody2D" parent="obstacles"]
+position = Vector2(1408, 538)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/SmallPlatform1"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(256, 64)
+texture = SubResource("CanvasTexture_ur00s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/SmallPlatform1"]
+scale = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_sp001")
+
+[node name="SmallPlatform2" type="StaticBody2D" parent="obstacles"]
+position = Vector2(2008, 438)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/SmallPlatform2"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(256.00012, 63.99996)
+texture = SubResource("CanvasTexture_wndkh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/SmallPlatform2"]
+scale = Vector2(4, 1)
+shape = SubResource("RectangleShape2D_sp001")
+
+[node name="Obstacle1" type="StaticBody2D" parent="obstacles"]
+position = Vector2(508, 938)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Obstacle1"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(128, 256)
+texture = SubResource("CanvasTexture_ly3hx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Obstacle1"]
+scale = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_o001")
+
+[node name="Obstacle2" type="StaticBody2D" parent="obstacles"]
+position = Vector2(2908, 938)
+
+[node name="Sprite2D" type="Sprite2D" parent="obstacles/Obstacle2"]
+modulate = Color(0.2, 0.2, 0.2, 1)
+scale = Vector2(128, 256)
+texture = SubResource("CanvasTexture_4n8tn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="obstacles/Obstacle2"]
+scale = Vector2(2, 4)
+shape = SubResource("RectangleShape2D_o001")

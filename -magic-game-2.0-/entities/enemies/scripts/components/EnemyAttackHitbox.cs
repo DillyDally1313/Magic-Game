@@ -2,10 +2,10 @@ using Godot;
 using Core.Types;
 
 public partial class EnemyAttackHitbox : Area2D {
-    private EnemyController enemy;
+    private BaseEnemy enemy;
 
     public override void _Ready() {
-        enemy = GetParent<EnemyController>();
+        enemy = GetParent<BaseEnemy>();
 
         // connect area entered signals
         AreaEntered += OnAreaEntered;

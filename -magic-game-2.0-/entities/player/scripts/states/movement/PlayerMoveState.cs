@@ -16,6 +16,11 @@ public partial class PlayerMoveState : State {
             return;
         } // if
 
+        // check if not on floor
+        if (!player.IsOnFloor()) {
+            stateMachine.ChangeState("PlayerFallState");
+        } // if
+
         // check if jumping
         if (player.JumpJustPressed && player.canJump) {
             stateMachine.ChangeState("PlayerJumpState");
@@ -34,10 +39,5 @@ public partial class PlayerMoveState : State {
 
         // accelerate toward target speed
         player.Velocity = new Vector2(Mathf.MoveToward(player.Velocity.X, targetSpeed, player.acceleration * delta), player.Velocity.Y);
-
-        // update facing direction
-        if (player.HorizontalInput != 0) {
-            player.facingDirection = Mathf.Sign(player.HorizontalInput);
-        } // if
     } // PhysicsProcess
 } // PlayerMoveState

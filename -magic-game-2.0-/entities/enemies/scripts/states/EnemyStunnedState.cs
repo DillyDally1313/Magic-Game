@@ -1,11 +1,11 @@
 using Godot;
 
 public partial class EnemyStunnedState : State {
-    private EnemyController enemy;
+    private BaseEnemy enemy;
     private float stunTimer = 0f;
 
     public override void Enter() {
-        enemy = character as EnemyController;
+        enemy = character as BaseEnemy;
 
         enemy.Modulate = enemy.stunColor;
         stunTimer = enemy.stunTime;

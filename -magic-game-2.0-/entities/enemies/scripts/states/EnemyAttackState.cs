@@ -3,7 +3,7 @@ using Core.Types;
 using System;
 
 public partial class EnemyAttackState : State {
-    private EnemyController enemy;
+    private BaseEnemy enemy;
     private Area2D attackHitbox;
 
     private float windupTimer = 0f;
@@ -20,7 +20,7 @@ public partial class EnemyAttackState : State {
     [Export] Label parryWindowLabel;
 
     public override void Enter() {
-        enemy = character as EnemyController;
+        enemy = character as BaseEnemy;
         attackHitbox = enemy.GetNodeOrNull<Area2D>("AttackHitbox");
 
         // choose random attack direction

@@ -1,14 +1,15 @@
-[gd_scene load_steps=15 format=3 uid="uid://cprbeto4pfj3t"]
+[gd_scene load_steps=16 format=3 uid="uid://cprbeto4pfj3t"]
 
 [ext_resource type="Texture2D" uid="uid://bjeixxjlqmijx" path="res://icon.svg" id="1_erog5"]
 [ext_resource type="Script" uid="uid://cwj82du2nbqpj" path="res://entities/player/scripts/PlayerController.cs" id="1_xefbw"]
 [ext_resource type="Script" uid="uid://duo3do434s3h8" path="res://core/state_machine/StateMachine.cs" id="2_vn2cn"]
 [ext_resource type="Script" uid="uid://xdhjql3qo2tw" path="res://entities/player/scripts/components/PlayerAttackHitbox.cs" id="3_6oylw"]
-[ext_resource type="Script" uid="uid://dl3ib65xkpwbp" path="res://entities/player/scripts/states/PlayerIdleState.cs" id="3_c3a0y"]
-[ext_resource type="Script" uid="uid://curdjyljq7oo2" path="res://entities/player/scripts/states/PlayerMoveState.cs" id="4_xefbw"]
-[ext_resource type="Script" uid="uid://d0tv61wkinna3" path="res://entities/player/scripts/states/PlayerJumpState.cs" id="5_2fsl7"]
-[ext_resource type="Script" uid="uid://dkjxihk76n8yo" path="res://entities/player/scripts/states/PlayerAttackState.cs" id="7_2fsl7"]
-[ext_resource type="Script" uid="uid://v74g0cn546fp" path="res://entities/player/scripts/states/PlayerParryState.cs" id="8_t4ku0"]
+[ext_resource type="Script" uid="uid://dl3ib65xkpwbp" path="res://entities/player/scripts/states/movement/PlayerIdleState.cs" id="3_c3a0y"]
+[ext_resource type="Script" uid="uid://curdjyljq7oo2" path="res://entities/player/scripts/states/movement/PlayerMoveState.cs" id="4_xefbw"]
+[ext_resource type="Script" uid="uid://d0tv61wkinna3" path="res://entities/player/scripts/states/movement/PlayerJumpState.cs" id="5_2fsl7"]
+[ext_resource type="Script" uid="uid://dkjxihk76n8yo" path="res://entities/player/scripts/states/combat/PlayerAttackState.cs" id="7_2fsl7"]
+[ext_resource type="Script" uid="uid://v74g0cn546fp" path="res://entities/player/scripts/states/combat/PlayerParryState.cs" id="8_t4ku0"]
+[ext_resource type="Script" uid="uid://c668j4c0j6kd7" path="res://entities/player/scripts/states/movement/PlayerFallState.cs" id="8_u3c1g"]
 [ext_resource type="Script" uid="uid://b4wdqu34amf5i" path="res://entities/player/scripts/components/ParryHandler.cs" id="10_6oylw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2262g"]
@@ -22,9 +23,12 @@ size = Vector2(91, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvawb"]
 size = Vector2(18.688751, 20)
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("parryLabel") groups=["player"]]
+[node name="player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_xefbw")
-parryLabel = NodePath("")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -64)
@@ -40,11 +44,11 @@ position = Vector2(32, -64)
 script = ExtResource("3_6oylw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
-position = Vector2(45.5, 0.125)
+position = Vector2(45.500004, -0.125)
 shape = SubResource("RectangleShape2D_2fsl7")
 
 [node name="Sprite2D" type="Sprite2D" parent="AttackHitbox"]
-position = Vector2(45.500004, 0.12499964)
+position = Vector2(45.500004, -0.12500036)
 scale = Vector2(91.00001, 19.750002)
 texture = SubResource("CanvasTexture_2fsl7")
 
@@ -67,22 +71,29 @@ texture = SubResource("CanvasTexture_2fsl7")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState", "character")]
 script = ExtResource("2_vn2cn")
-initialState = NodePath("PlayerIdleState")
+initialState = NodePath("Movement/PlayerFallState")
 character = NodePath("..")
 
-[node name="PlayerIdleState" type="Node" parent="StateMachine"]
+[node name="Movement" type="Node" parent="StateMachine"]
+
+[node name="PlayerIdleState" type="Node" parent="StateMachine/Movement"]
 script = ExtResource("3_c3a0y")
 
-[node name="PlayerMoveState" type="Node" parent="StateMachine"]
+[node name="PlayerMoveState" type="Node" parent="StateMachine/Movement"]
 script = ExtResource("4_xefbw")
 
-[node name="PlayerJumpState" type="Node" parent="StateMachine"]
+[node name="PlayerJumpState" type="Node" parent="StateMachine/Movement"]
 script = ExtResource("5_2fsl7")
 
-[node name="PlayerAttackState" type="Node" parent="StateMachine"]
+[node name="PlayerFallState" type="Node" parent="StateMachine/Movement"]
+script = ExtResource("8_u3c1g")
+
+[node name="Combat" type="Node" parent="StateMachine"]
+
+[node name="PlayerAttackState" type="Node" parent="StateMachine/Combat"]
 script = ExtResource("7_2fsl7")
 
-[node name="PlayerParryState" type="Node" parent="StateMachine"]
+[node name="PlayerParryState" type="Node" parent="StateMachine/Combat"]
 script = ExtResource("8_t4ku0")
 
 [node name="ParryHandler" type="Node" parent="."]

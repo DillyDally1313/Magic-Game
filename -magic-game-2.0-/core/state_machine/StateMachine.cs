@@ -9,19 +9,25 @@ public partial class StateMachine : Node {
     private State currentState;
 
     public override void _Ready() {
-        // get all child states
-        foreach (Node node in GetChildren()) {
-            if (node is State state) {
-                states[state.Name] = state;
-                state.Initialize(this, character);
-                state.SetProcess(false);
-                state.SetPhysicsProcess(false);
-            } // if
-        } // foreach
+        // Recursively find all states
+        GetStates(this, states);
 
         // start with initial state
         ChangeState(initialState.Name);
     } // _Ready
+
+    private void GetStates(Node parent, Dictionary<string, State> states) {
+        foreach (Node child in parent.GetChildren()) {
+            if (child is State state) {
+                states[state.Name] = state;
+                state.Initialize(this, character);
+                state.SetProcess(false);
+                state.SetPhysicsProcess(false);
+            } else {
+                GetStates(child, states);
+            } // if
+        } // foreach
+    } // GetState
 
     public override void _Process(double delta) {
         currentState?.Process((float)delta);

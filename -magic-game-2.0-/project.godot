@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="*Magic Game 2.0*"
-run/main_scene="uid://cac4j8q26r0q7"
+run/main_scene="uid://c8etwrquce5xg"
 config/features=PackedStringArray("4.5", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 

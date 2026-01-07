@@ -16,7 +16,7 @@ public partial class PlayerController : CharacterBody2D, IDamageable {
     // jump settings
     public bool canJump = false;
     public float jumpSpeed = -700.0f;
-    public float gravity = 1500.0f;
+    public float jumpGravity = 1500.0f;
     public float fallGravity = 2300.0f;
     public float maxFallSpeed = 1200.0f;
 
@@ -41,7 +41,6 @@ public partial class PlayerController : CharacterBody2D, IDamageable {
 
     // helper properties
     public int facingDirection = 1;
-    public bool isFalling => Velocity.Y > 0 && !IsOnFloor();
 
     bool IDamageable.isStunned {
         get => isStunned;
@@ -53,12 +52,19 @@ public partial class PlayerController : CharacterBody2D, IDamageable {
     } // _Ready
 
     public override void _PhysicsProcess(double delta) {
-        // apply gravity
-        if (!IsOnFloor()) {
-            float currentGravity = (Velocity.Y > 0) ? gravity * 1.5f : gravity;
-            Velocity = new Vector2(Velocity.X, Mathf.Min(Velocity.Y + currentGravity * (float)delta, maxFallSpeed));
-        } else {
+        // check if on ground
+        if (IsOnFloor()) {
             canJump = true;
+        } // if
+
+        // handle facing direction
+        GD.Print(Scale.X + ", " + Scale.Y);
+        if (HorizontalInput != 0) {
+            int newDirection = Mathf.Sign(HorizontalInput);
+            if (facingDirection != newDirection) {
+                facingDirection = newDirection;
+                Scale = new Vector2(facingDirection, 1);
+            } // if
         } // if
 
         MoveAndSlide();

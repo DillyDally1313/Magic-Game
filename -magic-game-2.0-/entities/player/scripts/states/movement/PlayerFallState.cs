@@ -1,20 +1,19 @@
 using Godot;
 
-public partial class PlayerJumpState : State {
+public partial class PlayerFallState : State {
     PlayerController player;
 
     public override void Enter() {
         player = character as PlayerController;
 
-        // apply jump velocity
-        if (player.canJump) {
-            player.Velocity = new Vector2(player.Velocity.X, player.jumpSpeed);
-            player.canJump = false;
-        } // if
-        // play jump animation
+        // play fall animation
     } // Enter
 
     public override void PhysicsProcess(float delta) {
+        // apply fall gravity
+        float speedY = Mathf.Min(player.Velocity.Y + player.fallGravity * delta, player.maxFallSpeed);
+        player.Velocity = new Vector2(player.Velocity.X, speedY);
+
         // handle movement in air
         if (player.HorizontalInput != 0) {
             float targetSpeed = player.HorizontalInput * player.maxSpeed;
@@ -24,11 +23,6 @@ public partial class PlayerJumpState : State {
 
             // accelerate
             player.Velocity = new Vector2(Mathf.MoveToward(player.Velocity.X, targetSpeed, player.acceleration * delta), player.Velocity.Y);
-
-            // update facing direction
-            if (player.HorizontalInput != 0) {
-                player.facingDirection = Mathf.Sign(player.HorizontalInput);
-            } // if
         } else {
             player.ApplyFriction(delta);
         } // if
@@ -50,4 +44,4 @@ public partial class PlayerJumpState : State {
             } // if
         } // if
     } // PhysicsProcess
-} // PlayerJumpState
+} // PlayerFallState

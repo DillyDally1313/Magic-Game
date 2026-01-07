@@ -23,19 +23,12 @@ public partial class PlayerAttackState : State {
     public override void PhysicsProcess(float delta) {
         attackTimer -= delta;
 
-        player.ApplyFriction(delta);
-        ApplyActionMovement(delta);
+        player.ApplyFriction(delta); 
 
         if (attackTimer <= 0) {
             ReturnToPreviousState();
         } // if
     } // PhysicsProcess
-
-    private void ApplyActionMovement(float delta) {
-        // add small dash forward
-        float movementX = 100f * player.facingDirection * delta;
-        player.Velocity = new Vector2(movementX, player.Velocity.Y);
-    } // ApplyActionMovement
 
     private void PositionHitbox(Area2D hitbox, ActionDirection direction) {
         switch (direction) {
@@ -53,7 +46,7 @@ public partial class PlayerAttackState : State {
 
     private void ReturnToPreviousState() {
         if (!player.IsOnFloor()) {
-            stateMachine.ChangeState("PlayerJumpState");
+            stateMachine.ChangeState("PlayerFallState");
         } else if (player.HorizontalInput != 0) {
             stateMachine.ChangeState("PlayerMoveState");
         } else {

@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://44ijmngyg5f"]
 
-[ext_resource type="Script" uid="uid://cn5cskrcmhxwt" path="res://entities/enemy/scripts/EnemyController.cs" id="1_8m36s"]
+[ext_resource type="Script" uid="uid://cn5cskrcmhxwt" path="res://entities/enemies/base/BaseEnemy.cs" id="1_8m36s"]
 [ext_resource type="Texture2D" uid="uid://bjeixxjlqmijx" path="res://icon.svg" id="2_ylpgd"]
-[ext_resource type="Script" uid="uid://cmoybjdy8yqsc" path="res://entities/enemy/scripts/components/EnemyAttackHitbox.cs" id="3_01ilp"]
+[ext_resource type="Script" uid="uid://cmoybjdy8yqsc" path="res://entities/enemies/scripts/components/EnemyAttackHitbox.cs" id="3_01ilp"]
 [ext_resource type="Script" uid="uid://duo3do434s3h8" path="res://core/state_machine/StateMachine.cs" id="4_1uot4"]
-[ext_resource type="Script" uid="uid://cgjo15ig54fao" path="res://entities/enemy/scripts/states/EnemyIdleState.cs" id="5_derr5"]
-[ext_resource type="Script" uid="uid://bxuj0dpgkd8qf" path="res://entities/enemy/scripts/states/EnemyAttackState.cs" id="6_rgkma"]
-[ext_resource type="Script" uid="uid://cogxogjx4od40" path="res://entities/enemy/scripts/states/EnemyStunnedState.cs" id="7_ylpgd"]
+[ext_resource type="Script" uid="uid://cgjo15ig54fao" path="res://entities/enemies/scripts/states/EnemyIdleState.cs" id="5_derr5"]
+[ext_resource type="Script" uid="uid://bxuj0dpgkd8qf" path="res://entities/enemies/scripts/states/EnemyAttackState.cs" id="6_rgkma"]
+[ext_resource type="Script" uid="uid://cogxogjx4od40" path="res://entities/enemies/scripts/states/EnemyStunnedState.cs" id="7_ylpgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1504"]
 size = Vector2(64, 128)

@@ -1,7 +1,7 @@
 using Godot;
 
 public partial class EnemyIdleState : State {
-    private EnemyController enemy;
+    private BaseEnemy enemy;
     private PlayerController player;
 
     public float attackRange = 150f;
@@ -11,7 +11,7 @@ public partial class EnemyIdleState : State {
     private float cooldownTimer = 0f;
 
     public override void Enter() {
-        enemy = character as EnemyController;
+        enemy = character as BaseEnemy;
         player = GetTree().GetFirstNodeInGroup("player") as PlayerController;
         cooldownTimer = 0f;
     } // Enter

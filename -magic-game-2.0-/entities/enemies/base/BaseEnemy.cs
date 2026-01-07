@@ -2,7 +2,7 @@ using Godot;
 using Core.Types;
 using Core.Utilities;
 
-public partial class EnemyController : CharacterBody2D, IDamageable, IParryable {
+public partial class BaseEnemy : CharacterBody2D, IDamageable, IParryable {
     // health settings
     public float maxHealth = 50f;
     public float currentHealth;
@@ -81,4 +81,4 @@ public partial class EnemyController : CharacterBody2D, IDamageable, IParryable 
         // remove from tree
         QueueFree();    
     } // Die
-} // EnemyController
+} // BaseEnemy
